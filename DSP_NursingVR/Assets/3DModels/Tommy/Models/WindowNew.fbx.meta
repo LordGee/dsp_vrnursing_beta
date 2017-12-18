@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 4c92f796e65ccbd4d9b0d160cab20965
+timeCreated: 1512529353
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: group7
+    100002: Hinge_Bolt
+    100004: Hinge_Bolt1
+    100006: Hinge_Bolt10
+    100008: Hinge_Bolt11
+    100010: Hinge_Bolt2
+    100012: Hinge_Bolt3
+    100014: Hinge_Bolt4
+    100016: Hinge_Bolt5
+    100018: Hinge_Bolt6
+    100020: Hinge_Bolt7
+    100022: Hinge_Bolt8
+    100024: Hinge_Bolt9
+    100026: Window_Frame
+    100028: Window_Handle
+    100030: Window_Handle_Rotator
+    100032: Window_Hinge_Left
+    100034: Window_Hinge_Left1
+    100036: //RootNode
+    400000: group7
+    400002: Hinge_Bolt
+    400004: Hinge_Bolt1
+    400006: Hinge_Bolt10
+    400008: Hinge_Bolt11
+    400010: Hinge_Bolt2
+    400012: Hinge_Bolt3
+    400014: Hinge_Bolt4
+    400016: Hinge_Bolt5
+    400018: Hinge_Bolt6
+    400020: Hinge_Bolt7
+    400022: Hinge_Bolt8
+    400024: Hinge_Bolt9
+    400026: Window_Frame
+    400028: Window_Handle
+    400030: Window_Handle_Rotator
+    400032: Window_Hinge_Left
+    400034: Window_Hinge_Left1
+    400036: //RootNode
+    2300000: Hinge_Bolt
+    2300002: Hinge_Bolt1
+    2300004: Hinge_Bolt10
+    2300006: Hinge_Bolt11
+    2300008: Hinge_Bolt2
+    2300010: Hinge_Bolt3
+    2300012: Hinge_Bolt4
+    2300014: Hinge_Bolt5
+    2300016: Hinge_Bolt6
+    2300018: Hinge_Bolt7
+    2300020: Hinge_Bolt8
+    2300022: Hinge_Bolt9
+    2300024: Window_Frame
+    2300026: Window_Handle
+    2300028: Window_Handle_Rotator
+    2300030: Window_Hinge_Left
+    2300032: Window_Hinge_Left1
+    3300000: Hinge_Bolt
+    3300002: Hinge_Bolt1
+    3300004: Hinge_Bolt10
+    3300006: Hinge_Bolt11
+    3300008: Hinge_Bolt2
+    3300010: Hinge_Bolt3
+    3300012: Hinge_Bolt4
+    3300014: Hinge_Bolt5
+    3300016: Hinge_Bolt6
+    3300018: Hinge_Bolt7
+    3300020: Hinge_Bolt8
+    3300022: Hinge_Bolt9
+    3300024: Window_Frame
+    3300026: Window_Handle
+    3300028: Window_Handle_Rotator
+    3300030: Window_Hinge_Left
+    3300032: Window_Hinge_Left1
+    4300000: Hinge_Bolt5
+    4300002: Window_Frame
+    4300004: Hinge_Bolt3
+    4300006: Hinge_Bolt4
+    4300008: Hinge_Bolt1
+    4300010: Hinge_Bolt6
+    4300012: Window_Handle
+    4300014: Hinge_Bolt2
+    4300016: Hinge_Bolt8
+    4300018: Window_Hinge_Left
+    4300020: Window_Hinge_Left1
+    4300022: Hinge_Bolt7
+    4300024: Hinge_Bolt10
+    4300026: Window_Handle_Rotator
+    4300028: Hinge_Bolt
+    4300030: Hinge_Bolt11
+    4300032: Hinge_Bolt9
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
