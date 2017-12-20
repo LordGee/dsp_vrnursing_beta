@@ -8,6 +8,7 @@ public class ConstantController {
     public const string EV_SPAWN_WATER = "SpawnWaterEvent";
     public const string EV_SPAWN_FOOD = "SpawnFoodEvent";
     public const string EV_UPDATE_SCORE = "UpdateScoreEvent";
+    public const string EV_UPDATE_STATUS_CANVAS = "UpdateStatusCanvas";
 
 
     // Game Controller
@@ -15,9 +16,9 @@ public class ConstantController {
     public enum TASK_STATE { Task3 };
     public enum PLAYER_STATE { Water, Food, OK };
 
-    public const float HYDRATION_MAX = 5f;
+    public const float HYDRATION_MAX = 8f;
     public const float HYDRATION_DECREASE_TIME = 20f;
-    public const float HUNGER_MAX = 5f;
+    public const float HUNGER_MAX = 8f;
     public const float HUNGER_DECREASE_TIME = 36f;
     public const float GAME_TIME = 300f;
 
@@ -41,6 +42,9 @@ public class ConstantController {
     public const string TASK_DELEGATE = "Delegate";
     public const string TASK_WIN = "WinTask";
     public const string TASK_COMPLETE = "TaskComplete";
+
+    // GameObjects
+    public const string GO_STATUS_CANVAS = "StatusCanvas";
 
     // Pipe Game
     public enum PIPE_PIECES

@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour {
     private float hydrationLevel, hydrationTimer;
     private float hungerLevel, hungerTimer;
     private float gameTimer, timerInterval, gameScore;
-    private bool waterSpawned = false, foodSpawned = false;
+    private bool waterSpawned, foodSpawned;
 
     public float GetHydrationLevel() { return hydrationLevel; }
     public float GetHungerLevel() { return hungerLevel; }
@@ -94,6 +94,7 @@ public class GameController : MonoBehaviour {
                 hydrationTimer += Time.deltaTime;
                 if (hydrationTimer > ConstantController.HYDRATION_DECREASE_TIME) {
                     hydrationLevel -= 1f;
+                    CanvasController.gameHydration = hydrationLevel;
                     hydrationTimer = 0f;
                     if (hydrationLevel <= 2 && !waterSpawned) {
                         EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
@@ -110,6 +111,7 @@ public class GameController : MonoBehaviour {
                 hungerTimer += Time.deltaTime;
                 if (hungerTimer > ConstantController.HUNGER_DECREASE_TIME) {
                     hungerLevel -= 1f;
+                    CanvasController.gameEnergy = hungerLevel;
                     hungerTimer = 0f;
                     //Debug.Log("Reduced hunger level, new level = " + hungerLevel);
                 }
@@ -141,11 +143,11 @@ public class GameController : MonoBehaviour {
     public void UpdateGameScore(float _score)
     {
         gameScore += _score;
-        GameObject.Find("Txt_Score").GetComponent<Text>().text = gameScore.ToString("F");
+        CanvasController.gameScore = gameScore;
     }
 
     public void UpdateGameTimer() {
-        GameObject.Find("Txt_Timer").GetComponent<Text>().text = Mathf.Floor(gameTimer).ToString();
+        CanvasController.gameTimer = gameTimer;
     }
 
     void OnEnable()

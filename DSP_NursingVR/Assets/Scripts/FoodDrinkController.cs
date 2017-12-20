@@ -8,7 +8,6 @@ public class FoodDrinkController : MonoBehaviour {
     private GameObject currentWater, currentFood;
     private Transform[] spawnPoints;
     private bool activeObject;
-    private float timer, maxTime = 15f;
 
     void Start () {
         GameObject spawn = GameObject.Find("SpawnPoints");
@@ -27,18 +26,17 @@ public class FoodDrinkController : MonoBehaviour {
     }
 
     private void SpawnWater() {
-        SpawnObject(waterObject, currentWater);
+        SpawnObject(waterObject, ref currentWater);
     }
 
     private void SpawnFood() {
-        SpawnObject(foodObject, currentFood);
+        SpawnObject(foodObject, ref currentFood);
     }
 
-    private void SpawnObject(GameObject _obj, GameObject _current) {
+    private void SpawnObject(GameObject _obj, ref GameObject _current) {
         int randomSpawnLocation = Random.Range(1, spawnPoints.Length);
-        Debug.Log("Random Number = " + randomSpawnLocation);
+        // Debug.Log("Random Number = " + randomSpawnLocation);
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
         activeObject = true;
-        timer = Time.timeSinceLevelLoad;
     }
 }
