@@ -10,6 +10,7 @@ TagManager:
   - PipeConnector
   - PipePart
   - Bed
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

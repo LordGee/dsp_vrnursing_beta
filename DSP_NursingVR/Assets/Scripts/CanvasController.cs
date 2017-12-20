@@ -8,10 +8,11 @@ public class CanvasController : MonoBehaviour
     private GameObject statusCanvas;
     public static float gameTimer, gameScore, gameHydration, gameEnergy;
     public static bool canvasStatus;
+    [SerializeField]public Sprite[] imageHydration, imageEnergy;
 
     void Start() {
         statusCanvas = GameObject.Find(ConstantController.GO_STATUS_CANVAS);
-        DeactivateCanvas(statusCanvas);
+        // DeactivateCanvas(statusCanvas);
     }
 
     public void DeactivateCanvas(GameObject _canvas) {
@@ -32,6 +33,9 @@ public class CanvasController : MonoBehaviour
     private void UpdateStatusCanvas()
     {
         statusCanvas.transform.Find("Score").GetComponent<Text>().text = Mathf.Floor(gameScore).ToString();
+        statusCanvas.transform.Find("Timer").GetComponent<Text>().text = Mathf.Floor(gameTimer).ToString();
+        statusCanvas.transform.Find("Hydration").GetComponent<Image>().sprite = imageHydration[(int)gameHydration];
+        statusCanvas.transform.Find("Energy").GetComponent<Image>().sprite = imageEnergy[(int)gameEnergy];
     }
 
     void OnEnable()

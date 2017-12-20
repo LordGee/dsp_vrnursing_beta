@@ -58,6 +58,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1552990353242360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4122784885121918}
+  - component: {fileID: 114670961070120160}
+  m_Layer: 0
+  m_Name: CanvasManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1657432924838378
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +133,19 @@ Transform:
   m_Father: {fileID: 4144275888240312}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4122784885121918
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552990353242360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4144275888240312}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4144275888240312
 Transform:
   m_ObjectHideFlags: 1
@@ -131,6 +160,7 @@ Transform:
   - {fileID: 4082440376363084}
   - {fileID: 4004878299258496}
   - {fileID: 4314880275330136}
+  - {fileID: 4122784885121918}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -277,6 +307,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterObject: {fileID: 100002, guid: ce397329b4e975f4dbf6c962b7e0a4f9, type: 3}
   foodObject: {fileID: 100004, guid: 038739907a3a9fb4fbd65461e3d37707, type: 3}
+--- !u!114 &114670961070120160
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1552990353242360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90363de774289184c86d99cc6e813cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageHydration:
+  - {fileID: 21300000, guid: 22677af387925d44b8a90069c0cd4b7a, type: 3}
+  - {fileID: 21300000, guid: a8c1250461768544cb5010572d8080b6, type: 3}
+  - {fileID: 21300000, guid: 7567b673971703f42b7fd08c88645e0b, type: 3}
+  - {fileID: 21300000, guid: ac1921b8382b0b9458663d72dac63405, type: 3}
+  - {fileID: 21300000, guid: 60863c7fcc7113e4cb75ec3ef1882cf1, type: 3}
+  - {fileID: 21300000, guid: 604603247e5b3e34f8e7dffd117c8a8e, type: 3}
+  - {fileID: 21300000, guid: 156c4d9b57622bc4fb7014a7fa0d4992, type: 3}
+  - {fileID: 21300000, guid: 38bc33fed30c12a4e9e75e38978b9f20, type: 3}
+  - {fileID: 21300000, guid: a1252950e4252ec4eb3538168d8bc667, type: 3}
+  imageEnergy:
+  - {fileID: 21300000, guid: d417aae2d46b6b647b391c7f751c9288, type: 3}
+  - {fileID: 21300000, guid: 02a3c54698ce7084e902cbd9468ff6d2, type: 3}
+  - {fileID: 21300000, guid: b5de95bf11d07234cb516ef7fedf9b92, type: 3}
+  - {fileID: 21300000, guid: 83a7b4abc116bbc4f8bb21e03930a792, type: 3}
+  - {fileID: 21300000, guid: 720c7427d04742749801fda59a2b84a4, type: 3}
+  - {fileID: 21300000, guid: 89babb28655b29641a566c51e9438d7e, type: 3}
+  - {fileID: 21300000, guid: d4ee3aa2fd2719646aeb8d7e32f65829, type: 3}
+  - {fileID: 21300000, guid: c08f5b139baf76841ac77608a4758957, type: 3}
+  - {fileID: 21300000, guid: da501603ecadf0b44b1dd49c599dbba1, type: 3}
 --- !u!114 &114981065847496720
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -21,8 +21,8 @@ public class GameController : MonoBehaviour {
         currentPlayerState = ConstantController.PLAYER_STATE.OK;
         hydrationTimer = 0f;
         hungerTimer = 0f;
-        hydrationLevel = ConstantController.HYDRATION_MAX;
-        hungerLevel = ConstantController.HUNGER_MAX;
+        CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
+        CanvasController.gameEnergy = hungerLevel = ConstantController.HUNGER_MAX;
         waterSpawned = foodSpawned = false;
         gameScore = 0f;
         gameTimer = timerInterval = 300f;
@@ -148,6 +148,7 @@ public class GameController : MonoBehaviour {
 
     public void UpdateGameTimer() {
         CanvasController.gameTimer = gameTimer;
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_STATUS_CANVAS);
     }
 
     void OnEnable()
