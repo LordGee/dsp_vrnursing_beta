@@ -3,10 +3,11 @@ using Valve.VR;
 
 public class PlayerControls : MonoBehaviour
 {
-    private EVRButtonId triggerButton = 
-        EVRButtonId.k_EButton_SteamVR_Trigger;
+    private EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;
 
     private EVRButtonId gripButton = EVRButtonId.k_EButton_Grip;
+
+    private EVRButtonId menuButton = EVRButtonId.k_EButton_ApplicationMenu;
 
     private EVRControllerAxisType analogue = EVRControllerAxisType.k_eControllerAxis_Joystick;
 
@@ -51,6 +52,18 @@ public class PlayerControls : MonoBehaviour
             pickup = null;
         }
 
+        if (controller.GetPressDown(menuButton))
+        {
+            if (CanvasController.canvasStatus)
+            {
+                EventController.TriggerEvent(ConstantController.EV_CLOSE_STATUS_CANVAS);
+            }
+            else
+            {
+                EventController.TriggerEvent(ConstantController.EV_OPEN_STATUS_CANVAS);
+            }
+        }
+        
 
         if (FindObjectOfType<PipeManager>() != null)
         {

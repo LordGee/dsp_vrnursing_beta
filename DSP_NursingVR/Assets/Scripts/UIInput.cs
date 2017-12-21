@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -31,9 +32,19 @@ public class UIInput : MonoBehaviour {
     }
 
     private void HandleTriggerClicked(object sender, ClickedEventArgs e) {
-        if (EventSystem.current.currentSelectedGameObject != null) {
-            ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, new PointerEventData(EventSystem.current), ExecuteEvents.submitHandler);
+        try
+        {
+            if ( EventSystem.current.currentSelectedGameObject != null )
+            {
+                ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, new PointerEventData(EventSystem.current), ExecuteEvents.submitHandler);
+            }
         }
+        catch (Exception exception)
+        {
+            Debug.Log("Need to fix this, but not now");
+            throw;
+        }
+
     }
 
     private void HandlePointerIn(object sender, PointerEventArgs e) {

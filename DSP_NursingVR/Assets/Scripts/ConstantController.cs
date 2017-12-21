@@ -9,6 +9,8 @@ public class ConstantController {
     public const string EV_SPAWN_FOOD = "SpawnFoodEvent";
     public const string EV_UPDATE_SCORE = "UpdateScoreEvent";
     public const string EV_UPDATE_STATUS_CANVAS = "UpdateStatusCanvas";
+    public const string EV_OPEN_STATUS_CANVAS = "OpenStatusCanvas";
+    public const string EV_CLOSE_STATUS_CANVAS = "CloseStatusCanvas";
 
 
     // Game Controller

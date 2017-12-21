@@ -10,13 +10,19 @@ public class CanvasController : MonoBehaviour
     public static bool canvasStatus;
     [SerializeField]public Sprite[] imageHydration, imageEnergy;
 
-    void Start() {
+    void Awake() {
         statusCanvas = GameObject.Find(ConstantController.GO_STATUS_CANVAS);
-        // DeactivateCanvas(statusCanvas);
+        DeactivateCanvas(statusCanvas);
     }
 
     public void DeactivateCanvas(GameObject _canvas) {
         _canvas.SetActive(false);
+        canvasStatus = false;
+    }
+
+    public void DeactivateCanvas()
+    {
+        statusCanvas.SetActive(false);
         canvasStatus = false;
     }
 
@@ -40,11 +46,15 @@ public class CanvasController : MonoBehaviour
 
     void OnEnable()
     {
+        EventController.StartListening(ConstantController.EV_OPEN_STATUS_CANVAS, OpenStatusCanvas);
+        EventController.StartListening(ConstantController.EV_CLOSE_STATUS_CANVAS, DeactivateCanvas);
         EventController.StartListening(ConstantController.EV_UPDATE_STATUS_CANVAS, UpdateStatusCanvas);
     }
 
     void OnDisable()
     {
+        EventController.StopListening(ConstantController.EV_OPEN_STATUS_CANVAS, OpenStatusCanvas);
+        EventController.StopListening(ConstantController.EV_CLOSE_STATUS_CANVAS, DeactivateCanvas);
         EventController.StopListening(ConstantController.EV_UPDATE_STATUS_CANVAS, UpdateStatusCanvas);
     }
 }
