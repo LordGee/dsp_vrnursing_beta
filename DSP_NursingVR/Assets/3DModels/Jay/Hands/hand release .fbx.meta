@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 14a85baa5d28dcd4c86857173993c30c
+timeCreated: 1513868815
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: aiSkyDomeLight1
+    100002: arm
+    100004: arm_rig
+    100006: first_forefinger
+    100008: first_middle
+    100010: forefinger
+    100012: group
+    100014: group1
+    100016: group2
+    100018: //RootNode
+    100020: hand1
+    100022: hand:Mesh
+    100024: hand:Mesh1
+    100026: little1
+    100028: little2
+    100030: little3
+    100032: little_fingger
+    100034: middle_finger
+    100036: ring_finger
+    100038: ring_first
+    100040: ring_second
+    100042: ring_third
+    100044: secibd_forefinger
+    100046: second_middle
+    100048: second_tumbs
+    100050: third_forefinger
+    100052: third_middle
+    100054: third_tumbs
+    100056: Thumbs
+    100058: top_tumbs
+    400000: aiSkyDomeLight1
+    400002: arm
+    400004: arm_rig
+    400006: first_forefinger
+    400008: first_middle
+    400010: forefinger
+    400012: group
+    400014: group1
+    400016: group2
+    400018: //RootNode
+    400020: hand1
+    400022: hand:Mesh
+    400024: hand:Mesh1
+    400026: little1
+    400028: little2
+    400030: little3
+    400032: little_fingger
+    400034: middle_finger
+    400036: ring_finger
+    400038: ring_first
+    400040: ring_second
+    400042: ring_third
+    400044: secibd_forefinger
+    400046: second_middle
+    400048: second_tumbs
+    400050: third_forefinger
+    400052: third_middle
+    400054: third_tumbs
+    400056: Thumbs
+    400058: top_tumbs
+    2100000: aiStandard1
+    2100002: aiStandard2
+    2300000: hand:Mesh
+    3300000: hand:Mesh
+    4300000: hand:Mesh
+    4300002: hand:Mesh1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: hand:Mesh1
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
