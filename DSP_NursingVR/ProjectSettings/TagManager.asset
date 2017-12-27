@@ -11,6 +11,7 @@ TagManager:
   - PipePart
   - Bed
   - SpawnPoint
+  - Teleport
   layers:
   - Default
   - TransparentFX

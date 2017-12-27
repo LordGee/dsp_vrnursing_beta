@@ -305,8 +305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f7f20f8a892b44191c8129829f868f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterObject: {fileID: 100002, guid: ce397329b4e975f4dbf6c962b7e0a4f9, type: 3}
-  foodObject: {fileID: 100004, guid: 038739907a3a9fb4fbd65461e3d37707, type: 3}
+  waterObject: {fileID: 1547140894355492, guid: 407d6389ebb18354f8e0027c93fd0e92,
+    type: 2}
+  foodObject: {fileID: 1374517728147766, guid: 610b19a2b79780a4ab2253b99f038759, type: 2}
 --- !u!114 &114670961070120160
 MonoBehaviour:
   m_ObjectHideFlags: 1
