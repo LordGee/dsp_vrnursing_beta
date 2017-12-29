@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4544507606119180}
   - component: {fileID: 114300550310657302}
   - component: {fileID: 114515791424595012}
+  - component: {fileID: 114160739628584348}
   m_Layer: 0
   m_Name: PlayArea
   m_TagString: Untagged
@@ -182,6 +183,42 @@ MonoBehaviour:
   uiClickPressed: 0
   menuPressed: 0
   controllerVisible: 1
+--- !u!114 &114160739628584348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654955843241372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 174429e04b0388249a137b2dc0050b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableTeleport: 1
+  targetListPolicy: {fileID: 0}
+  enableBodyCollisions: 1
+  ignoreGrabbedCollisions: 1
+  ignoreCollisionsWith: []
+  headsetYOffset: 0.2
+  movementThreshold: 0.0015
+  playAreaMovementThreshold: 0.00075
+  standingHistorySamples: 5
+  leanYThreshold: 0.5
+  stepUpYOffset: 0.15
+  stepThicknessMultiplier: 0.5
+  stepDropThreshold: 0.08
+  customRaycast: {fileID: 0}
+  layersToIgnore:
+    serializedVersion: 2
+    m_Bits: 4
+  fallRestriction: 0
+  gravityFallYThreshold: 1
+  blinkYThreshold: 0.15
+  floorHeightTolerance: 0.001
+  fallCheckPrecision: 5
+  teleporter: {fileID: 0}
+  customBodyColliderContainer: {fileID: 0}
+  customFootColliderContainer: {fileID: 0}
 --- !u!114 &114300550310657302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,10 +417,10 @@ MonoBehaviour:
   pointerRenderer: {fileID: 114458961449329750}
   activationButton: 10
   holdButtonToActivate: 0
-  activateOnEnable: 1
+  activateOnEnable: 0
   activationDelay: 0
-  selectionButton: 10
-  selectOnPress: 0
+  selectionButton: 3
+  selectOnPress: 1
   selectionDelay: 0
   selectAfterHoverDuration: 0
   interactWithObjects: 0

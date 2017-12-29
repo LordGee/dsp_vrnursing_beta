@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 4506013061281516}
   m_Layer: 0
   m_Name: Bed
-  m_TagString: Bed
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 23045377776134110}
   m_Layer: 0
   m_Name: pCube16
-  m_TagString: Untagged
+  m_TagString: Bed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -549,7 +549,7 @@ Transform:
   - {fileID: 4980836381073066}
   - {fileID: 4434731991301558}
   m_Father: {fileID: 4506013061281516}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4111423712870276
 Transform:
@@ -700,7 +700,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4506013061281516}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
 --- !u!4 &4434731991301558
 Transform:
@@ -761,8 +761,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1264978639478448}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.7, z: 3.7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7, y: 0.7, z: -4}
   m_LocalScale: {x: 30, y: 30, z: 30}
   m_Children:
   - {fileID: 4932827219753114}
@@ -772,11 +772,11 @@ Transform:
   - {fileID: 4963896194087580}
   - {fileID: 4026747298119312}
   - {fileID: 4194942304784350}
-  - {fileID: 4107617705737414}
   - {fileID: 4431964186482168}
+  - {fileID: 4107617705737414}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4698489735660346
 Transform:
   m_ObjectHideFlags: 1

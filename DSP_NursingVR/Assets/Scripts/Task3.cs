@@ -24,6 +24,7 @@ public class Task3 : MonoBehaviour {
         trigger = Instantiate(triggerEventPrefab, bed.transform);
         step = 1;
         taskTimer = 120f;
+        EventController.StartListening(ConstantController.TASK_END_SIGNAL, EndSignal);
     }
 
     void Update()
@@ -32,15 +33,9 @@ public class Task3 : MonoBehaviour {
         {
             if (trigger != null && !trigger.GetComponent<TriggerEventStart>().HasTriggerActivated()) {
                 SignalNewTask();
-            } else {
-                EndSignal();
-            }
-        } else if (step == 2) {
-            LaunchInstructions();
-        } else if (step == 3) {
+            } 
+        }  else if (step == 3) {
             RotateInstructions();
-        } else if (step == 4) {
-            LaunchGame();
         } else if (step == 5) {
             taskTimer -= Time.deltaTime;
         }
@@ -54,10 +49,10 @@ public class Task3 : MonoBehaviour {
     {
         if (Time.timeSinceLevelLoad - lightTimer > lightStrobeSpeed) {
             if (!lightStatus) {
-                bed.GetComponentInChildren<Light>().range = lightOnValue;
+                bed.transform.parent.GetComponentInChildren<Light>().range = lightOnValue;
                 lightStatus = !lightStatus;
             } else {
-                bed.GetComponentInChildren<Light>().range = 0f;
+                bed.transform.parent.GetComponentInChildren<Light>().range = 0f;
                 lightStatus = !lightStatus;
             }
             lightTimer = Time.timeSinceLevelLoad;
@@ -66,14 +61,17 @@ public class Task3 : MonoBehaviour {
 
     private void EndSignal()
     {
-        bed.GetComponentInChildren<Light>().range = 0f;
+        bed.transform.parent.GetComponentInChildren<Light>().range = 0f;
         lightStatus = !lightStatus;
         step++;
         Destroy(trigger.gameObject);
+        EventController.StopListening(ConstantController.TASK_END_SIGNAL, EndSignal);
+        LaunchInstructions();
     }
 
     private void LaunchInstructions()
     {
+        EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
         float newX = (bed.transform.position.x > 0) ? 2.5f : -2.5f;
         canvas = Instantiate(
             taskCanvas,
@@ -94,6 +92,8 @@ public class Task3 : MonoBehaviour {
 
     private void LaunchGame()
     {
+        EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
+        EventController.StartListening(ConstantController.TASK_WIN, WinTask);
         Debug.LogWarning("LaunchGame");
         Destroy(canvas);
         task = Instantiate(taskChallenge);
@@ -110,10 +110,12 @@ public class Task3 : MonoBehaviour {
         {
             step++;
             onlyOnce = true;
+            LaunchGame();
         }
     }
 
     public void DelegateButton() {
+        EventController.StopListening(ConstantController.TASK_DELEGATE, DelegateButton);
         Debug.Log("DELEGATE");
     }
 
@@ -125,6 +127,7 @@ public class Task3 : MonoBehaviour {
             once = true;
             step++;
             Debug.Log("WINNER!!! - " + taskTimer.ToString("F"));
+            EventController.StopListening(ConstantController.TASK_WIN, WinTask);
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, taskTimer);
             PipeManager.DropUnusedPipes();
             EventController.TriggerEvent(ConstantController.TASK_COMPLETE);
@@ -134,15 +137,12 @@ public class Task3 : MonoBehaviour {
     
 
     private void OnEnable() {
-        EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
         EventController.StartListening(ConstantController.TASK_DELEGATE, DelegateButton);
-        EventController.StartListening(ConstantController.TASK_WIN, WinTask);
     }
 
     private void OnDisable() {
-        EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
-        EventController.StopListening(ConstantController.TASK_DELEGATE, DelegateButton);
-        EventController.StopListening(ConstantController.TASK_WIN, WinTask);
+        
+
     }
 }
 

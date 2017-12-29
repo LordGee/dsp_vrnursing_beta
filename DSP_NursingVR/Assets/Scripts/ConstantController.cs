@@ -44,6 +44,8 @@ public class ConstantController {
     public const string TASK_DELEGATE = "Delegate";
     public const string TASK_WIN = "WinTask";
     public const string TASK_COMPLETE = "TaskComplete";
+    public const string TASK_START_SIGNAL = "Step1";
+    public const string TASK_END_SIGNAL = "Step2";
 
     // GameObjects
     public const string GO_STATUS_CANVAS = "StatusCanvas";
