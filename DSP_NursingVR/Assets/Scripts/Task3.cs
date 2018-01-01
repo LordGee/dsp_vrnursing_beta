@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Task3 : MonoBehaviour {
 
-    public GameObject triggerEventPrefab, taskCanvas, taskChallenge, gamePosition;
+    public GameObject triggerEventPrefab, taskCanvas, taskAcceptor, taskChallenge, gamePosition;
     public string taskInstructions;
 
     private GameObject[] beds;
@@ -29,13 +29,10 @@ public class Task3 : MonoBehaviour {
 
     void Update()
     {
-        if (step == 1)
-        {
-            if (trigger != null && !trigger.GetComponent<TriggerEventStart>().HasTriggerActivated()) {
-                SignalNewTask();
-            } 
+        if (step == 1) {
+            SignalNewTask();
         }  else if (step == 3) {
-            RotateInstructions();
+            // RotateInstructions();
         } else if (step == 5) {
             taskTimer -= Time.deltaTime;
         }
@@ -72,22 +69,22 @@ public class Task3 : MonoBehaviour {
     private void LaunchInstructions()
     {
         EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
-        float newX = (bed.transform.position.x > 0) ? 2.5f : -2.5f;
-        canvas = Instantiate(
-            taskCanvas,
-            new Vector3(bed.transform.position.x + newX, bed.transform.position.y + 2.5f, bed.transform.position.z),
-            Quaternion.identity
-        );
+        // float newX = (bed.transform.parent.position.x > 0) ? 2.5f : -2.5f;
+        taskCanvas.transform.Find("Instructions").GetComponent<Text>().text = taskInstructions;
+        canvas = Instantiate( taskCanvas, bed.transform );
+        Instantiate(taskAcceptor, bed.transform);
         step++;
     }
 
     private void RotateInstructions()
     {
+        /*
         GameObject player = GameObject.FindGameObjectWithTag("MainCamera");
         Vector3 rotateTo = player.transform.forward * 100;
         Quaternion rotate = Quaternion.LookRotation(rotateTo - canvas.transform.localPosition);
         canvas.transform.localRotation = Quaternion.RotateTowards(canvas.transform.localRotation, rotate, 0.5f);
         canvas.GetComponentInChildren<Text>().text = taskInstructions;
+        */
     }
 
     private void LaunchGame()

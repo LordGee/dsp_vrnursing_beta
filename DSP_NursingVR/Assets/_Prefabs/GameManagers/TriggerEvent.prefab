@@ -431,11 +431,11 @@ MonoBehaviour:
   defaultCursorObject: {fileID: 1485998908474370}
   hoverCursorObject: {fileID: 1394614862099710}
   lockedCursorObject: {fileID: 1182894885366878}
-  destinationLocation: {fileID: 0}
+  destinationLocation: {fileID: 4612414445813234}
   snapToPoint: 1
   hidePointerCursorOnHover: 1
   hideDirectionIndicatorOnHover: 0
-  snapToRotation: 0
+  snapToRotation: 1
 --- !u!114 &114508747901887264
 MonoBehaviour:
   m_ObjectHideFlags: 1
