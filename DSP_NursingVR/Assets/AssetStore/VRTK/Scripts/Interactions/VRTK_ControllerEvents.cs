@@ -729,14 +729,6 @@ namespace VRTK
             {
                 ButtonTwoPressed(this, e);
             }
-
-            if ( CanvasController.canvasStatus ) {
-                Debug.Log("De-activate menu");
-                EventController.TriggerEvent(ConstantController.EV_CLOSE_STATUS_CANVAS);
-            } else {
-                Debug.Log("Activate menu");
-                EventController.TriggerEvent(ConstantController.EV_OPEN_STATUS_CANVAS);
-            }
         }
 
         public virtual void OnButtonTwoReleased(ControllerInteractionEventArgs e)
