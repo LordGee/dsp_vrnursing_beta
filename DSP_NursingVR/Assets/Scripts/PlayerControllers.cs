@@ -172,12 +172,12 @@ public class PlayerControllers : MonoBehaviour
     }
 
 
-    private bool pipeSelected;
-    private RaycastHit pipeHit;
-
     /************************************/
     /* Functions for controller actions */
     /************************************/
+
+    private bool pipeSelected;
+    private RaycastHit pipeHit;
 
     private void CanvasStatusAction()
     {
