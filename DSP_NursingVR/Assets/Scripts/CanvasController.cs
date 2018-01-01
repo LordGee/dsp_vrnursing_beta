@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class CanvasController : MonoBehaviour
 {
-    private GameObject statusCanvas;
+    public GameObject statusCanvas;
     public static float gameTimer, gameScore, gameHydration, gameEnergy;
     public static bool canvasStatus;
     [SerializeField]public Sprite[] imageHydration, imageEnergy;
 
     void Awake() {
-        statusCanvas = GameObject.Find(ConstantController.GO_STATUS_CANVAS);
+        // statusCanvas = GameObject.Find(ConstantController.GO_STATUS_CANVAS);
         DeactivateCanvas(statusCanvas);
     }
 
