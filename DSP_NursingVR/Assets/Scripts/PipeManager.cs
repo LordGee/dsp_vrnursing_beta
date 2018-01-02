@@ -14,17 +14,17 @@ public class PipeManager : MonoBehaviour {
 
     void Start()
     {
-        float startX = (COLS / 2) * SPACING;
+        float startZ = (COLS / 2) * SPACING;
         float startY = (ROWS / 2) * SPACING;
         currentGridMatrix = new GameObject[ROWS, COLS];
-        startPoint = new Vector3(transform.position.x - startX, transform.position.y + startY, transform.position.z);
+        startPoint = new Vector3(transform.position.x, transform.position.y + startY, transform.position.z - startZ);
         BuildPipes();
     }
 
 
     private void BuildPipes()
     {
-        float startX = startPoint.x, startY = startPoint.y, startZ = startPoint.z - 0.8f;
+        float startX = startPoint.x, startY = startPoint.y, startZ = startPoint.z;
         for (int i = 0; i < ROWS; i++)
         {
             for (int j = 0; j < COLS; j++)
@@ -54,7 +54,7 @@ public class PipeManager : MonoBehaviour {
                         currentGridMatrix[i, j].transform.parent = gameObject.transform;
                         j = COLS + 1;
                     }
-                    startX += SPACING;
+                    startZ += SPACING;
                 }
                 else
                 {
@@ -62,17 +62,18 @@ public class PipeManager : MonoBehaviour {
                         Instantiate(pipes[Random.Range(0, pipes.Length)], new Vector3(startX, startY, startZ), Quaternion.identity);
                     currentGridMatrix[i, j].GetComponent<Pipe>().connectedSupply = false;
                     currentGridMatrix[i, j].GetComponent<Pipe>().pipeType = ConstantController.PIPE_PIECES.Game;
+                    currentGridMatrix[i, j].transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y + 90f, 0f);
                     currentGridMatrix[i, j].transform.parent = gameObject.transform;
-                    startX += SPACING;
+                    startZ += SPACING;
                     int rotLotto = Random.Range(0, 4);
                     for (int k = 0; k < rotLotto; k++)
                     {
-                        currentGridMatrix[i,j].GetComponent<Pipe>().InitialRotation();
+                        currentGridMatrix[i, j].GetComponent<Pipe>().InitialRotation();
                     }
                     
                 }
             }
-            startX = startPoint.x;
+            startZ = startPoint.z;
             startY -= SPACING;
         }
     }

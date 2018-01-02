@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1543dab0aacb394386ab0fded11a5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectorIndex: 0
 --- !u!114 &114654897496683110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1543dab0aacb394386ab0fded11a5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  connectorIndex: 0
 --- !u!114 &114715190124585282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -516,6 +518,7 @@ MonoBehaviour:
   rowIndex: 0
   colIndex: 0
   pipeType: 0
+  triggerOnce: 0
 --- !u!135 &135524221337806806
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -96,10 +96,10 @@ public class Task3 : MonoBehaviour {
     {
         EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
         EventController.StartListening(ConstantController.TASK_WIN, WinTask);
-        Debug.LogWarning("LaunchGame");
         Destroy(canvas);
         task = Instantiate(taskChallenge);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log(player.name + " Rotation = " + gamePosition.transform.rotation);
         player.transform.position = gamePosition.transform.position;
         player.transform.rotation = gamePosition.transform.rotation;
         step++;
