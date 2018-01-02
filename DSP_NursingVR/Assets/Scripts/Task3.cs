@@ -22,6 +22,7 @@ public class Task3 : MonoBehaviour {
         bed = beds[Random.Range(0, beds.Length)];
         lightTimer = Time.timeSinceLevelLoad;
         trigger = Instantiate(triggerEventPrefab, bed.transform);
+        RotateTrigger();
         step = 1;
         taskTimer = 120f;
         EventController.StartListening(ConstantController.TASK_END_SIGNAL, EndSignal);
@@ -76,14 +77,18 @@ public class Task3 : MonoBehaviour {
         step++;
     }
 
-    private void RotateInstructions()
+    private void RotateTrigger()
     {
+        if (bed.transform.position.z < 0) {
+            GameObject teleportPoint = trigger.transform.Find("TeleportPoint").gameObject;
+            teleportPoint.transform.Rotate(Vector3.up, 180f);
+        }
         /*
-        GameObject player = GameObject.FindGameObjectWithTag("MainCamera");
-        Vector3 rotateTo = player.transform.forward * 100;
-        Quaternion rotate = Quaternion.LookRotation(rotateTo - canvas.transform.localPosition);
-        canvas.transform.localRotation = Quaternion.RotateTowards(canvas.transform.localRotation, rotate, 0.5f);
-        canvas.GetComponentInChildren<Text>().text = taskInstructions;
+        // GameObject player = GameObject.FindGameObjectWithTag("MainCamera");
+        Vector3 rotateTo = bed.transform.forward * 1f;
+        GameObject teleportPoint = trigger.transform.Find("TeleportPoint").gameObject;
+        Quaternion rotate = Quaternion.LookRotation(rotateTo - teleportPoint.transform.localPosition);
+        teleportPoint.transform.localRotation = Quaternion.RotateTowards(teleportPoint.transform.localRotation, rotate, 360f);
         */
     }
 

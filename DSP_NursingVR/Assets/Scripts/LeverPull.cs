@@ -12,9 +12,9 @@ public class LeverPull : MonoBehaviour
 
     void OnTriggerStay(Collider _col)
     {
-        if (_col.gameObject.tag == "Player")
+        if ( _col.transform.parent.transform.parent.tag == "Player" )
         {
-            if (_col.gameObject.GetComponent<PlayerControls>().CheckGripPressed())
+            if ( _col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed() )
             {
                 anim.SetTrigger("LeverPullTrigger");
                 StartCoroutine(WaitForAnimation());

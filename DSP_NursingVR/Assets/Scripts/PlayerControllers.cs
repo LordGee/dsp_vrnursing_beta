@@ -88,11 +88,13 @@ public class PlayerControllers : MonoBehaviour
     /* Grip Button */
     private void DoGripPressed(object sender, ControllerInteractionEventArgs e)
     {
+        gripPressed = true;
         //DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "GRIP", "pressed", e);
     }
 
     private void DoGripReleased(object sender, ControllerInteractionEventArgs e)
     {
+        gripPressed = false;
         //DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "GRIP", "released", e);
     }
 
@@ -176,7 +178,7 @@ public class PlayerControllers : MonoBehaviour
     /* Functions for controller actions */
     /************************************/
 
-    private bool pipeSelected;
+    private bool pipeSelected, gripPressed;
     private RaycastHit pipeHit;
 
     private void CanvasStatusAction()
@@ -216,5 +218,8 @@ public class PlayerControllers : MonoBehaviour
         pipeSelected = false;
     }
 
-
+    public bool CheckGripPressed()
+    {
+        return gripPressed;
+    }
 }

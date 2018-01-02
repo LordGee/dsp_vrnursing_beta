@@ -435,7 +435,7 @@ MonoBehaviour:
   snapToPoint: 1
   hidePointerCursorOnHover: 1
   hideDirectionIndicatorOnHover: 0
-  snapToRotation: 1
+  snapToRotation: 2
 --- !u!114 &114508747901887264
 MonoBehaviour:
   m_ObjectHideFlags: 1

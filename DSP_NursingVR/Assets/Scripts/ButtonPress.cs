@@ -17,13 +17,15 @@ public class ButtonPress : MonoBehaviour {
 
     void OnTriggerStay(Collider _col)
     {
-        if (_col.gameObject.tag == "Player") {
-            if (_col.gameObject.GetComponent<PlayerControls>().CheckGripPressed()) {
-                anim.SetTrigger("PushButton" + buttonNumber + "Trigger");
-                display.text = textOptions[buttonNumber];
-                EventController.TriggerEvent(ConstantController.TASK_SELECTION_OPTION, buttonNumber);
+            if (_col.transform.parent.transform.parent.tag == "Player")
+            {
+                if (_col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed())
+                {
+                    anim.SetTrigger("PushButton" + buttonNumber + "Trigger");
+                    display.text = textOptions[buttonNumber];
+                    EventController.TriggerEvent(ConstantController.TASK_SELECTION_OPTION, buttonNumber);
+                }
             }
-        }
     }
 }
 
