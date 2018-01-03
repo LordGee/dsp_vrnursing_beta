@@ -11,6 +11,8 @@ public class ConstantController {
     public const string EV_UPDATE_STATUS_CANVAS = "UpdateStatusCanvas";
     public const string EV_OPEN_STATUS_CANVAS = "OpenStatusCanvas";
     public const string EV_CLOSE_STATUS_CANVAS = "CloseStatusCanvas";
+    public const string EV_EAT = "EatFood";
+    public const string EV_DRINK = "DrinkWater";
 
 
     // Game Controller

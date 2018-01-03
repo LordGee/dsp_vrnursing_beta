@@ -7,6 +7,7 @@ public class FoodDrinkController : MonoBehaviour {
     [SerializeField]public GameObject waterObject, foodObject;
     private GameObject currentWater, currentFood;
     private Transform[] spawnPoints;
+    private int currentIndex;
     private bool activeObject;
 
     void Start () {
@@ -33,9 +34,27 @@ public class FoodDrinkController : MonoBehaviour {
         SpawnObject(foodObject, ref currentFood);
     }
 
+    public void ConsumeWater()
+    {
+        Destroy(currentWater);
+        EventController.TriggerEvent(ConstantController.EV_DRINK);
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 10f);
+    }
+
+    public void ConsumeFood()
+    {
+        Destroy(currentFood);
+        EventController.TriggerEvent(ConstantController.EV_EAT);
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 20f);
+    }
+
     private void SpawnObject(GameObject _obj, ref GameObject _current) {
         int randomSpawnLocation = Random.Range(1, spawnPoints.Length);
-        // Debug.Log("Random Number = " + randomSpawnLocation);
+        while (randomSpawnLocation != currentIndex)
+        {
+            randomSpawnLocation = Random.Range(1, spawnPoints.Length);
+            currentIndex = randomSpawnLocation;
+        }
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
         activeObject = true;
     }

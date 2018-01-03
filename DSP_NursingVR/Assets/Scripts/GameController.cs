@@ -11,9 +11,8 @@ public class GameController : MonoBehaviour {
     private float hungerLevel, hungerTimer;
     private float gameTimer, timerInterval, gameScore;
     private bool waterSpawned, foodSpawned;
-    private float lightLevelMax = 1.25f;
-    private const float LIGHT_DECREASE = 0.1f;
-
+    private float alpha;
+    private float maxAlpha = 0.8f;
 
     public float GetHydrationLevel() { return hydrationLevel; }
     public float GetHungerLevel() { return hungerLevel; }
@@ -25,7 +24,8 @@ public class GameController : MonoBehaviour {
         hungerTimer = 0f;
         CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
         CanvasController.gameEnergy = hungerLevel = ConstantController.HUNGER_MAX;
-        waterSpawned = foodSpawned = false;
+        EventController.TriggerEvent(ConstantController.EV_SPAWN_FOOD);
+        EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
         gameScore = 0f;
         gameTimer = timerInterval = 300f;
         UpdateGameScore(gameScore);
@@ -59,18 +59,20 @@ public class GameController : MonoBehaviour {
     
     public void ReplenishHungerLevel()
     {
-        hungerLevel = ConstantController.HUNGER_MAX;
+        CanvasController.gameEnergy = hungerLevel = ConstantController.HUNGER_MAX;
         hungerTimer = 0f;
         AdjustFadeColor();
+        EventController.TriggerEvent(ConstantController.EV_SPAWN_FOOD);
     }
 
     public void ReplenishHydrationLevel() {
-        hydrationLevel = ConstantController.HYDRATION_MAX;
+        CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
         hydrationTimer = 0f;
         AdjustFadeColor();
+        EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
     }
-    private float alpha = 0f;
-    private float maxAlpha = 0.8f;
+
+
     private void AdjustFadeColor()
     {
         float increment = maxAlpha / (ConstantController.HUNGER_MAX + ConstantController.HYDRATION_MAX);
@@ -88,7 +90,6 @@ public class GameController : MonoBehaviour {
 
 
     private void UpdateBrief() {
-
         currentGameState = ConstantController.GAME_STATE.Playing;
     }
 
@@ -101,10 +102,6 @@ public class GameController : MonoBehaviour {
                     AdjustFadeColor();
                     CanvasController.gameHydration = hydrationLevel;
                     hydrationTimer = 0f;
-                    if (hydrationLevel <= 2 && !waterSpawned) {
-                        EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
-                        waterSpawned = true;
-                    }
                 }
             } else {
                 Debug.Log("Player NEEDS Water Badley, level = " + hydrationLevel);
@@ -126,16 +123,6 @@ public class GameController : MonoBehaviour {
         }
     }
 
-    private void DrinkWater() {
-        ReplenishHydrationLevel();
-        Debug.Log("Thirst has been quenched");
-    }
-
-    private void NeedFood() {
-        ReplenishHungerLevel();
-        Debug.Log("That burger was tasty");
-    }
-
     private void UpdateGameOver() {
         Debug.Log("Thats ALL Folks!");
     }
@@ -154,11 +141,15 @@ public class GameController : MonoBehaviour {
     void OnEnable()
     {
         EventController.StartListening(ConstantController.EV_UPDATE_SCORE, UpdateGameScore);
+        EventController.StartListening(ConstantController.EV_DRINK, ReplenishHydrationLevel);
+        EventController.StartListening(ConstantController.EV_EAT, ReplenishHungerLevel);
     }
 
     void OnDisable()
     {
         EventController.StopListening(ConstantController.EV_UPDATE_SCORE, UpdateGameScore);
+        EventController.StopListening(ConstantController.EV_DRINK, ReplenishHydrationLevel);
+        EventController.StopListening(ConstantController.EV_EAT, ReplenishHungerLevel);
     }
 }
 
