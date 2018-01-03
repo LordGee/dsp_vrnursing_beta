@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using VRTK;
 
 public class GameController : MonoBehaviour {
 
     private ConstantController.GAME_STATE currentGameState;
-    private ConstantController.PLAYER_STATE currentPlayerState;
     private float hydrationLevel, hydrationTimer;
     private float hungerLevel, hungerTimer;
     private float gameTimer, timerInterval, gameScore;
     private bool waterSpawned, foodSpawned;
+    private float lightLevelMax = 1.25f;
+    private const float LIGHT_DECREASE = 0.1f;
+
 
     public float GetHydrationLevel() { return hydrationLevel; }
     public float GetHungerLevel() { return hungerLevel; }
@@ -18,7 +21,6 @@ public class GameController : MonoBehaviour {
 
     private void Start() {
         currentGameState = ConstantController.GAME_STATE.Brief;
-        currentPlayerState = ConstantController.PLAYER_STATE.OK;
         hydrationTimer = 0f;
         hungerTimer = 0f;
         CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
@@ -28,6 +30,7 @@ public class GameController : MonoBehaviour {
         gameTimer = timerInterval = 300f;
         UpdateGameScore(gameScore);
         UpdateGameTimer();
+        VRTK_BasicTeleport.BlinkColourColor = Color.clear;
     }
 
     private void Update()
@@ -45,22 +48,6 @@ public class GameController : MonoBehaviour {
             case ConstantController.GAME_STATE.Playing:
                 UpdatePlaying();
                 break;
-            case ConstantController.GAME_STATE.Needs:
-                switch (currentPlayerState) {
-                    case ConstantController.PLAYER_STATE.Water:
-                        // NeedWater();
-                        break;
-                    case ConstantController.PLAYER_STATE.Food:
-                        NeedFood();
-                        break;
-                    case ConstantController.PLAYER_STATE.OK:
-                        currentGameState = ConstantController.GAME_STATE.Playing;
-                        break;
-                    default:
-                        Debug.LogError("No active player state!");
-                        break;
-                }
-                break;
             case ConstantController.GAME_STATE.GameOver:
                 UpdateGameOver();
                 break;
@@ -69,23 +56,40 @@ public class GameController : MonoBehaviour {
                 break;
         }
     }
+    
+    public void ReplenishHungerLevel()
+    {
+        hungerLevel = ConstantController.HUNGER_MAX;
+        hungerTimer = 0f;
+        AdjustFadeColor();
+    }
 
     public void ReplenishHydrationLevel() {
         hydrationLevel = ConstantController.HYDRATION_MAX;
         hydrationTimer = 0f;
-        currentPlayerState = ConstantController.PLAYER_STATE.OK;
+        AdjustFadeColor();
+    }
+    private float alpha = 0f;
+    private float maxAlpha = 0.8f;
+    private void AdjustFadeColor()
+    {
+        float increment = maxAlpha / (ConstantController.HUNGER_MAX + ConstantController.HYDRATION_MAX);
+        alpha = 0f;
+        alpha += (ConstantController.HUNGER_MAX - hungerLevel) * increment;
+        alpha += (ConstantController.HYDRATION_MAX - hydrationLevel) * increment;
+        Debug.Log(alpha);
+        if (alpha  > maxAlpha)
+        {
+            alpha = maxAlpha;
+        }
+        VRTK_BasicTeleport.BlinkColourColor = new Color(0.2f, 0f, 0F, alpha);
+        VRTK_SDK_Bridge.HeadsetFade(VRTK_BasicTeleport.BlinkColourColor, 0.1f);
     }
 
-    public void ReplenishHungerLevel() {
-        hungerLevel = ConstantController.HUNGER_MAX;
-        hungerTimer = 0f;
-        currentPlayerState = ConstantController.PLAYER_STATE.OK;
-    }
+
     private void UpdateBrief() {
-        // Display Brief
-        //Debug.Log("Displaying Brief");
+
         currentGameState = ConstantController.GAME_STATE.Playing;
-        //Debug.Log("Now Playing");
     }
 
     private void UpdatePlaying() {
@@ -94,30 +98,26 @@ public class GameController : MonoBehaviour {
                 hydrationTimer += Time.deltaTime;
                 if (hydrationTimer > ConstantController.HYDRATION_DECREASE_TIME) {
                     hydrationLevel -= 1f;
+                    AdjustFadeColor();
                     CanvasController.gameHydration = hydrationLevel;
                     hydrationTimer = 0f;
                     if (hydrationLevel <= 2 && !waterSpawned) {
                         EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
                         waterSpawned = true;
                     }
-                    //Debug.Log("Reduced hydration level, new level = " + hydrationLevel);
                 }
             } else {
-                currentPlayerState = ConstantController.PLAYER_STATE.Water;
-                currentGameState = ConstantController.GAME_STATE.Needs;
                 Debug.Log("Player NEEDS Water Badley, level = " + hydrationLevel);
             }
             if (hungerLevel > 0) {
                 hungerTimer += Time.deltaTime;
                 if (hungerTimer > ConstantController.HUNGER_DECREASE_TIME) {
                     hungerLevel -= 1f;
+                    AdjustFadeColor();
                     CanvasController.gameEnergy = hungerLevel;
                     hungerTimer = 0f;
-                    //Debug.Log("Reduced hunger level, new level = " + hungerLevel);
                 }
             } else {
-                currentPlayerState = ConstantController.PLAYER_STATE.Food;
-                currentGameState = ConstantController.GAME_STATE.Needs;
                 Debug.Log("Player NEEDS Food Badley, level = " + hungerLevel);
             }
         } else {

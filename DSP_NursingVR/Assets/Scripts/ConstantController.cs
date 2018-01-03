@@ -16,8 +16,7 @@ public class ConstantController {
     // Game Controller
     public enum GAME_STATE { Brief, Playing, Needs, GameOver };
     public enum TASK_STATE { Task3 };
-    public enum PLAYER_STATE { Water, Food, OK };
-
+    
     public const float HYDRATION_MAX = 8f;
     public const float HYDRATION_DECREASE_TIME = 20f;
     public const float HUNGER_MAX = 8f;

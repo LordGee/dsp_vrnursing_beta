@@ -356,9 +356,11 @@ namespace VRTK
             }
         }
 
+        public static Color BlinkColourColor = Color.clear;
+
         protected virtual void ReleaseBlink()
         {
-            VRTK_SDK_Bridge.HeadsetFade(Color.clear, fadeInTime);
+            VRTK_SDK_Bridge.HeadsetFade(BlinkColourColor, fadeInTime);
             fadeInTime = 0f;
         }
 

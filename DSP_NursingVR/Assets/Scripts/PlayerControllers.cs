@@ -183,13 +183,9 @@ public class PlayerControllers : MonoBehaviour
 
     private void CanvasStatusAction()
     {
-        if ( CanvasController.canvasStatus )
-        {
-            Debug.Log("De-activate menu");
+        if ( CanvasController.canvasStatus ) {
             EventController.TriggerEvent(ConstantController.EV_CLOSE_STATUS_CANVAS);
-        } else
-        {
-            Debug.Log("Activate menu");
+        } else {
             EventController.TriggerEvent(ConstantController.EV_OPEN_STATUS_CANVAS);
         }
     }

@@ -12,6 +12,7 @@ TagManager:
   - Bed
   - SpawnPoint
   - Teleport
+  - Light
   layers:
   - Default
   - TransparentFX
