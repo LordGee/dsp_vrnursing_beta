@@ -10,7 +10,7 @@ public class PipeManager : MonoBehaviour {
     private Color flow = Color.green, end = Color.blue;
 
     private const int ROWS = 12, COLS = 10;
-    private const float SPACING = 0.4f;
+    private const float SPACING = 0.2f;
 
     void Start()
     {

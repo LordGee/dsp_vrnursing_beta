@@ -61,7 +61,7 @@ public class Pipe : MonoBehaviour {
     {
         if (!wait)
         {
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 90f);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90f);
             wait = true;
             StartCoroutine(Wait());
         }
@@ -70,7 +70,7 @@ public class Pipe : MonoBehaviour {
 
     public void RotateAntiClockwise() {
         if (!wait) {
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z - 90f);
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 90f);
             wait = true;
             StartCoroutine(Wait());
         }
@@ -83,7 +83,7 @@ public class Pipe : MonoBehaviour {
 
     public void InitialRotation()
     {
-        transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z + 90f);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90f);
     }
 
     public ConstantController.PIPE_PIECES GetPipeType()
