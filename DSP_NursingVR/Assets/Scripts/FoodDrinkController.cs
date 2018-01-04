@@ -8,12 +8,10 @@ public class FoodDrinkController : MonoBehaviour {
     private GameObject currentWater, currentFood;
     private Transform[] spawnPoints;
     private int currentIndex;
-    private bool activeObject;
 
     void Start () {
         GameObject spawn = GameObject.Find("SpawnPoints");
         spawnPoints = spawn.GetComponentsInChildren<Transform>();
-        activeObject = false;
     }
 	
     private void OnEnable() {
@@ -56,6 +54,5 @@ public class FoodDrinkController : MonoBehaviour {
             currentIndex = randomSpawnLocation;
         }
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
-        activeObject = true;
     }
 }

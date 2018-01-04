@@ -195,16 +195,13 @@ public class PlayerControllers : MonoBehaviour
         RaycastHit hitInfo = new RaycastHit();
         Ray ray = new Ray(this.transform.position, transform.forward);
         Physics.Raycast(ray, out hitInfo, 100f);
-        if ( hitInfo.transform.tag != null && hitInfo.transform.tag == ConstantController.TAG_PIPES )
-        {
+        if ( hitInfo.transform.tag != null && hitInfo.transform.tag == ConstantController.TAG_PIPES ) {
             pipeSelected = true;
             pipeHit = hitInfo;
         }
-        if ( transform.rotation.z > 0.2f && pipeSelected )
-        {
+        if ( transform.rotation.z > 0f && pipeSelected ) {
             pipeHit.transform.GetComponent<Pipe>().RotateClockwise();
-        } else if ( transform.rotation.z < -0.2f && pipeSelected )
-        {
+        } else if ( transform.rotation.z < -0f && pipeSelected ) {
             pipeHit.transform.GetComponent<Pipe>().RotateAntiClockwise();
         }
     }

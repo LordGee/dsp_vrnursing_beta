@@ -79,7 +79,6 @@ public class GameController : MonoBehaviour {
         alpha = 0f;
         alpha += (ConstantController.HUNGER_MAX - hungerLevel) * increment;
         alpha += (ConstantController.HYDRATION_MAX - hydrationLevel) * increment;
-        Debug.Log(alpha);
         if (alpha  > maxAlpha)
         {
             alpha = maxAlpha;
@@ -103,9 +102,7 @@ public class GameController : MonoBehaviour {
                     CanvasController.gameHydration = hydrationLevel;
                     hydrationTimer = 0f;
                 }
-            } else {
-                Debug.Log("Player NEEDS Water Badley, level = " + hydrationLevel);
-            }
+            } 
             if (hungerLevel > 0) {
                 hungerTimer += Time.deltaTime;
                 if (hungerTimer > ConstantController.HUNGER_DECREASE_TIME) {
@@ -114,9 +111,7 @@ public class GameController : MonoBehaviour {
                     CanvasController.gameEnergy = hungerLevel;
                     hungerTimer = 0f;
                 }
-            } else {
-                Debug.Log("Player NEEDS Food Badley, level = " + hungerLevel);
-            }
+            } 
         } else {
             currentGameState = ConstantController.GAME_STATE.GameOver;
             Debug.Log("Game Over" + System.DateTime.Now);

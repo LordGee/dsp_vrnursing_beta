@@ -10,8 +10,8 @@ public class Task3 : MonoBehaviour {
     public string taskInstructions;
 
     private GameObject[] beds;
-    private GameObject bed, trigger, canvas, task;
-    private float lightTimer, lightStrobeSpeed = 0.5f, lightOnValue = 1.5f, taskTimer, gameLength = 120f;
+    private GameObject bed, trigger, taskMachine, canvas, task;
+    private float lightTimer, lightStrobeSpeed = 0.5f, lightOnValue = 1.5f, taskTimer, timerUpdate;
     private bool lightStatus;
     private int step;
     private PipeManager pm;
@@ -36,6 +36,19 @@ public class Task3 : MonoBehaviour {
             // RotateInstructions();
         } else if (step == 5) {
             taskTimer -= Time.deltaTime;
+            if (Mathf.Floor(taskTimer) != Mathf.Floor(timerUpdate)) {
+                GameObject.Find("Timer").GetComponent<TextMesh>().text = taskTimer.ToString("F0");
+                timerUpdate = Mathf.Floor(taskTimer);
+            }
+            
+            if (taskTimer <= 0) {
+                taskTimer = 0;
+                WinTask();
+            } else if ( taskTimer < 60f && taskTimer > 30f) {
+                GameObject.Find("Timer").GetComponent<TextMesh>().color = new Color(1f, 0.8f, 0.4f, 1f);
+            } else if (taskTimer < 30f) {
+                GameObject.Find("Timer").GetComponent<TextMesh>().color = new Color(1f, 0f, 0f, 1f);
+            }
         }
     }
 
@@ -73,7 +86,7 @@ public class Task3 : MonoBehaviour {
         // float newX = (bed.transform.parent.position.x > 0) ? 2.5f : -2.5f;
         taskCanvas.transform.Find("Instructions").GetComponent<Text>().text = taskInstructions;
         canvas = Instantiate( taskCanvas, bed.transform );
-        Instantiate(taskAcceptor, bed.transform);
+        taskMachine = Instantiate(taskAcceptor, bed.transform);
         step++;
     }
 
@@ -97,6 +110,7 @@ public class Task3 : MonoBehaviour {
         EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
         EventController.StartListening(ConstantController.TASK_WIN, WinTask);
         Destroy(canvas);
+        Destroy(taskMachine);
         task = Instantiate(taskChallenge);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         Debug.Log(player.name + " Rotation = " + gamePosition.transform.rotation);

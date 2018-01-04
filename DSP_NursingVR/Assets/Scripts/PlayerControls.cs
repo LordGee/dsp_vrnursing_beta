@@ -9,8 +9,6 @@ public class PlayerControls : MonoBehaviour
 
     private EVRButtonId menuButton = EVRButtonId.k_EButton_ApplicationMenu;
 
-    private EVRControllerAxisType analogue = EVRControllerAxisType.k_eControllerAxis_Joystick;
-
     private SteamVR_TrackedObject trackedObj;
     private SteamVR_Controller.Device controller
         { get { return SteamVR_Controller.Input((int) trackedObj.index); } }

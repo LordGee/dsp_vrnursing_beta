@@ -29,7 +29,6 @@ public class TaskController : MonoBehaviour
     private void TaskCompleted()
     {
         StartCoroutine(EndTask());
-        
     }
 
     private IEnumerator EndTask() {

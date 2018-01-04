@@ -41,7 +41,7 @@ public class UIInput : MonoBehaviour {
         }
         catch (Exception exception)
         {
-            Debug.Log("Need to fix this, but not now");
+            Debug.Log("Need to fix this, but not now" + exception);
             throw;
         }
 
