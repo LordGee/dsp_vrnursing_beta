@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour {
 
-    [SerializeField]public GameObject waterObject, foodObject;
-    private GameObject currentWater, currentFood;
+    [SerializeField]public GameObject waterObject, foodObject, collectableObject;
+    private GameObject currentWater, currentFood, currentCollectable;
     private Transform[] spawnPoints;
     private bool[] spawnActive;
-    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1;
+    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentCollectableIndex = -1;
 
     void Start () {
         GameObject spawn = GameObject.Find("SpawnPoints");
@@ -39,25 +39,37 @@ public class SpawnController : MonoBehaviour {
         currentFoodIndex = currentIndex;
     }
 
+    private void SpawnCollectable()
+    {
+        SpawnObject(collectableObject, ref currentCollectable);
+        currentCollectableIndex = currentIndex;
+    }
+
     public void ConsumeWater()
     {
-        Destroy(currentWater);
-        spawnActive[currentWaterIndex] = false;
-        currentWaterIndex = -1;
-        EventController.TriggerEvent(ConstantController.EV_DRINK);
-        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 10f);
+        EndObject(ref currentWater, ref currentWaterIndex, ConstantController.EV_DRINK, 12f);
     }
 
     public void ConsumeFood()
     {
-        Destroy(currentFood);
-        spawnActive[currentFoodIndex] = false;
-        currentFoodIndex = -1;
-        EventController.TriggerEvent(ConstantController.EV_EAT);
-        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 20f);
+        EndObject(ref currentFood, ref currentFoodIndex, ConstantController.EV_EAT, 25f);
+    }
+    
+    public void CollectObject()
+    {
+        EndObject(ref currentCollectable, ref currentCollectableIndex, ConstantController.EV_COLLECTED, 100f);
     }
 
-    private void SpawnObject(GameObject _obj, ref GameObject _current) {
+    private void EndObject(ref GameObject _item, ref int _index, string _event, float _score)
+    {
+        Destroy(_item);
+        spawnActive[_index] = false;
+        _index = -1;
+        EventController.TriggerEvent(_event);
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _score);
+    }
+
+private void SpawnObject(GameObject _obj, ref GameObject _current) {
         int randomSpawnLocation = Random.Range(1, spawnPoints.Length);
         while (spawnActive[randomSpawnLocation]) {
             randomSpawnLocation = Random.Range(1, spawnPoints.Length);

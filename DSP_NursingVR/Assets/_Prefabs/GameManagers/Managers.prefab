@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4082440376363084}
   - component: {fileID: 114579866884119818}
   m_Layer: 0
-  m_Name: FoodDrinkManager
+  m_Name: SpawnManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,6 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tasks:
+  - {fileID: 1462326901352216, guid: 7967e1ead0963c34b9ea69866ceda24a, type: 2}
+  - {fileID: 1072976794446846, guid: d69ffae6d3027164a8aff998be852e42, type: 2}
   - {fileID: 1016589055444602, guid: 35faccc77a9e42f4592f995bf79b2ab8, type: 2}
 --- !u!114 &114534521736650982
 MonoBehaviour:
@@ -319,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90363de774289184c86d99cc6e813cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  statusCanvas: {fileID: 0}
   imageHydration:
   - {fileID: 21300000, guid: 22677af387925d44b8a90069c0cd4b7a, type: 3}
   - {fileID: 21300000, guid: a8c1250461768544cb5010572d8080b6, type: 3}
