@@ -22,11 +22,13 @@ public class SpawnController : MonoBehaviour {
     private void OnEnable() {
         EventController.StartListening(ConstantController.EV_SPAWN_WATER, SpawnWater);
         EventController.StartListening(ConstantController.EV_SPAWN_FOOD, SpawnFood);
+        EventController.StartListening(ConstantController.EV_SPAWN_COLLECTABLE, SpawnCollectable);
     }
 
     private void OnDisable() {
         EventController.StopListening(ConstantController.EV_SPAWN_WATER, SpawnWater);
         EventController.StopListening(ConstantController.EV_SPAWN_FOOD, SpawnFood);
+        EventController.StopListening(ConstantController.EV_SPAWN_COLLECTABLE, SpawnCollectable);
     }
 
     private void SpawnWater() {
