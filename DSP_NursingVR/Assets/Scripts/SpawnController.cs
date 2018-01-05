@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FoodDrinkController : MonoBehaviour {
+public class SpawnController : MonoBehaviour {
 
     [SerializeField]public GameObject waterObject, foodObject;
     private GameObject currentWater, currentFood;
     private Transform[] spawnPoints;
-    private int currentIndex;
+    private bool[] spawnActive;
+    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1;
 
     void Start () {
         GameObject spawn = GameObject.Find("SpawnPoints");
         spawnPoints = spawn.GetComponentsInChildren<Transform>();
+        spawnActive = new bool[spawnPoints.Length];
+        for (int i = 0; i < spawnActive.Length; i++) {
+            spawnActive[i] = false;
+        }
     }
 	
     private void OnEnable() {
@@ -26,15 +31,19 @@ public class FoodDrinkController : MonoBehaviour {
 
     private void SpawnWater() {
         SpawnObject(waterObject, ref currentWater);
+        currentWaterIndex = currentIndex;
     }
 
     private void SpawnFood() {
         SpawnObject(foodObject, ref currentFood);
+        currentFoodIndex = currentIndex;
     }
 
     public void ConsumeWater()
     {
         Destroy(currentWater);
+        spawnActive[currentWaterIndex] = false;
+        currentWaterIndex = -1;
         EventController.TriggerEvent(ConstantController.EV_DRINK);
         EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 10f);
     }
@@ -42,17 +51,19 @@ public class FoodDrinkController : MonoBehaviour {
     public void ConsumeFood()
     {
         Destroy(currentFood);
+        spawnActive[currentFoodIndex] = false;
+        currentFoodIndex = -1;
         EventController.TriggerEvent(ConstantController.EV_EAT);
         EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 20f);
     }
 
     private void SpawnObject(GameObject _obj, ref GameObject _current) {
         int randomSpawnLocation = Random.Range(1, spawnPoints.Length);
-        while (randomSpawnLocation != currentIndex)
-        {
+        while (spawnActive[randomSpawnLocation]) {
             randomSpawnLocation = Random.Range(1, spawnPoints.Length);
-            currentIndex = randomSpawnLocation;
         }
-        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
+        spawnActive[randomSpawnLocation] = true;
+        currentIndex = randomSpawnLocation; 
+        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
     }
 }

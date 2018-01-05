@@ -9,7 +9,7 @@ public class Water : MonoBehaviour
         {
             if ( _col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed() )
             {
-                FindObjectOfType<FoodDrinkController>().ConsumeWater();
+                FindObjectOfType<SpawnController>().ConsumeWater();
             }
         }
     }

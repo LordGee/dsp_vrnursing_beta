@@ -9,7 +9,7 @@ public class Apple : MonoBehaviour
         {
             if ( _col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed() )
             {
-                FindObjectOfType<FoodDrinkController>().ConsumeFood();
+                FindObjectOfType<SpawnController>().ConsumeFood();
             }
         }
     }
