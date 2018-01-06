@@ -12,11 +12,11 @@ public class TaskController : MonoBehaviour
     private List<GameObject> currentTask;
     private int currentIndex;
     private int selectedOption;
-    
 
     void Start()
     {
         selectedOption = 0;
+        currentTask = new List<GameObject>();
         InitiateTask(0);
     }
 
@@ -25,14 +25,14 @@ public class TaskController : MonoBehaviour
         currentTask.Add(Instantiate(tasks[_index]));
     }
 
-    private void TaskCompleted()
+    private void TaskCompleted(float _index)
     {
-        StartCoroutine(EndTask());
+        StartCoroutine(EndTask((int)_index));
     }
 
-    private IEnumerator EndTask() {
+    private IEnumerator EndTask(int _index) {
         yield return new WaitForSeconds(5f);
-        // Destroy(currentTask);
+        Destroy(currentTask[_index]);
     }
 
     public void AcceptButton() {

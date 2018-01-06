@@ -146,7 +146,7 @@ public class Task3 : MonoBehaviour {
             EventController.StopListening(ConstantController.TASK_WIN, WinTask);
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, taskTimer);
             PipeManager.DropUnusedPipes();
-            EventController.TriggerEvent(ConstantController.TASK_COMPLETE);
+            EventController.TriggerEvent(ConstantController.TASK_COMPLETE, 2);
         }
     }
 

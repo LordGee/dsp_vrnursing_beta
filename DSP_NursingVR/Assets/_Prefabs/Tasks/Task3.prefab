@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerEventPrefab: {fileID: 1858868316850984, guid: 8eeb03d1ce8881442819a86c595b6e29,
     type: 2}
-  taskCanvas: {fileID: 1559386572374864, guid: 5da6d6d53bb67f047b74e8c80e475151, type: 2}
+  taskCanvas: {fileID: 1808595311132032, guid: 49d78e354114bfa4ba0f44ec26a398e9, type: 2}
   taskAcceptor: {fileID: 1876147099317006, guid: a3eda8b749200424bb2bf15b216d5614,
     type: 2}
   taskChallenge: {fileID: 1284733102000786, guid: 643a12ce8bd3a334f91524edd56a8f4b,

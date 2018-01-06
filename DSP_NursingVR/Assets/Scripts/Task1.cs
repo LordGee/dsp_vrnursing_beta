@@ -1,17 +1,34 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Security;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class Task1 : MonoBehaviour
 {
+    public GameObject taskCanvas, spawnCanvas;
+    public string taskInstructions;
 
-    public GameObject taskCanvas;
+    private GameObject canvas;
     private bool isActive;
-    private int itemCount = 0;
+    private int itemCount;
 
     void Start()
     {
         EventController.TriggerEvent(ConstantController.EV_SPAWN_COLLECTABLE);
+        spawnCanvas = GameObject.Find("StartInstructions");
+
+        taskCanvas.transform.Find("Instructions").GetComponent<Text>().text = taskInstructions;
+        canvas = Instantiate(taskCanvas, spawnCanvas.transform);
+        StartCoroutine(DestroyCanvas());
+
         isActive = true;
-        itemCount++;
+        itemCount = 0;
+    }
+
+    private IEnumerator DestroyCanvas()
+    {
+        yield return new WaitForSeconds(30f);
+        Destroy(spawnCanvas);
     }
 
     public bool GetIsActive() { return isActive; }
@@ -20,15 +37,15 @@ public class Task1 : MonoBehaviour
     {
         isActive = false;
         itemCount++;
-        if (itemCount >= 4)
-        {
+        if (itemCount >= 4) {
             WinTask();
         }
     }
 
     private void WinTask()
     {
-        // destroy this
         Debug.Log("Task 1 Completed");
+        EventController.TriggerEvent(ConstantController.TASK_COMPLETE, 0);
+        // destroy this
     }
 }

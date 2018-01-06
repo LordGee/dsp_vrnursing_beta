@@ -51,3 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3bda48bfd2f7b840ad7c2ede3ca33b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  taskCanvas: {fileID: 1808595311132032, guid: 49d78e354114bfa4ba0f44ec26a398e9, type: 2}
+  spawnCanvas: {fileID: 1952804230258888, guid: 5246c0caf146bd3449a87995586c6e65,
+    type: 2}
+  taskInstructions: 'You need to find FOUR bottles of Asprin located around the ward.
+    Call me on #10 when you have found them all, I will come to collect them.'
