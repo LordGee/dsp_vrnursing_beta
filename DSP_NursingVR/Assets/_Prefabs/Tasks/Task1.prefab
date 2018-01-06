@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4894639690840600}
   - component: {fileID: 114790822344527216}
+  - component: {fileID: 82485181873288044}
   m_Layer: 0
   m_Name: Task1
   m_TagString: Untagged
@@ -40,6 +41,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82485181873288044
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462326901352216}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114790822344527216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,5 +135,23 @@ MonoBehaviour:
   taskCanvas: {fileID: 1808595311132032, guid: 49d78e354114bfa4ba0f44ec26a398e9, type: 2}
   spawnCanvas: {fileID: 1952804230258888, guid: 5246c0caf146bd3449a87995586c6e65,
     type: 2}
-  taskInstructions: 'You need to find THREE bottles of Asprin located around the ward.
-    Call me on #10 when you have found them all, I will come to collect them.'
+  voiceOverAudioClips:
+  - {fileID: 8300000, guid: 55d968f4e768ce24f9232566704e1629, type: 3}
+  - {fileID: 8300000, guid: 1839dfe0a9b14094b936d901ad7162c5, type: 3}
+  - {fileID: 8300000, guid: 8493776c11bd6744d9fa5ec5139baec0, type: 3}
+  - {fileID: 8300000, guid: e0a172f5d60ff204382ef6008ffe4618, type: 3}
+  - {fileID: 8300000, guid: 32e2c5aabc5799b48a94105eafb0ce91, type: 3}
+  taskInstructions:
+  - "Hello, your first mission is to get 3 packets of aspirin from the medicine cabinet
+    at the end of the ward. On your way there, help any patients and nurses that are
+    in need. Don\u2019t forget to keep an eye-out for any obstacles and select them
+    to remove the hazard before someone gets hurt."
+  - 'If you press the menu button on your controller, you will see your personal stats
+    menu. '
+  - "Keep an eye on your levels of hydration, energy and health. If your levels get
+    too low, you\u2019ll fail your mission.   "
+  - "Also, take on new missions on your way to the medicine cabinet to get more points.
+    You can take on missions, or delegate them to another nurse. If a nurses\u2019
+    workload goes above 10, they will have to stop working due to stress \u2013 so
+    be considerate. "
+  - 'Good luck! '
