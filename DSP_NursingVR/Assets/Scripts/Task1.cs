@@ -8,7 +8,6 @@ public class Task1 : MonoBehaviour
     public GameObject taskCanvas, spawnCanvas;
     public string taskInstructions;
 
-    private GameObject canvas;
     private bool isActive;
     private int itemCount;
 
@@ -18,7 +17,7 @@ public class Task1 : MonoBehaviour
         spawnCanvas = GameObject.Find("StartInstructions");
 
         taskCanvas.transform.Find("Instructions").GetComponent<Text>().text = taskInstructions;
-        canvas = Instantiate(taskCanvas, spawnCanvas.transform);
+        Instantiate(taskCanvas, spawnCanvas.transform);
         StartCoroutine(DestroyCanvas());
 
         isActive = true;
