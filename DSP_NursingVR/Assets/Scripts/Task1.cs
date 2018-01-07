@@ -11,13 +11,14 @@ public class Task1 : MonoBehaviour
 
     private bool isActive;
     private int itemCount, voiceIndex;
+    private const int AMOUNT_TO_WIN = 3;
 
     void Start()
     {
         spawnCanvas = GameObject.Find("StartInstructions");
         Instantiate(taskCanvas, spawnCanvas.transform);
 
-        voiceIndex = 4; // change back to 0
+        voiceIndex = 4; // todo: change back to 0
         PlayAudioClips();
 
         isActive = true;
@@ -75,7 +76,7 @@ public class Task1 : MonoBehaviour
     {
         isActive = false;
         itemCount++;
-        if (itemCount >= 4) {
+        if (itemCount >= AMOUNT_TO_WIN) {
             WinTask();
         }
     }
