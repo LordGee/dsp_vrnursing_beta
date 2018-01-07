@@ -17,7 +17,7 @@ public class TriggerEventStart : MonoBehaviour
 
     void OnTriggerEnter(Collider _col)
     {
-        if (_col.name == "[VRTK][AUTOGEN][FootColliderContainer]" )
+        if (_col.name == ConstantController.GO_FOOT_COLLIDER )
         {
             triggerActivated = true;
             EventController.TriggerEvent(ConstantController.TASK_END_SIGNAL);
@@ -26,7 +26,7 @@ public class TriggerEventStart : MonoBehaviour
 
     void OnCollisionEnter(Collision _col)
     {
-        if ( _col.transform.name == "[VRTK][AUTOGEN][FootColliderContainer]" )
+        if ( _col.transform.name == ConstantController.GO_FOOT_COLLIDER )
         {
             triggerActivated = true;
             EventController.TriggerEvent(ConstantController.TASK_END_SIGNAL);

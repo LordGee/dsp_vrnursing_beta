@@ -71,7 +71,7 @@ public class SpawnController : MonoBehaviour {
         EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _score);
     }
 
-private void SpawnObject(GameObject _obj, ref GameObject _current) {
+    private void SpawnObject(GameObject _obj, ref GameObject _current) {
         int randomSpawnLocation = Random.Range(1, spawnPoints.Length);
         while (spawnActive[randomSpawnLocation]) {
             randomSpawnLocation = Random.Range(1, spawnPoints.Length);
@@ -79,5 +79,10 @@ private void SpawnObject(GameObject _obj, ref GameObject _current) {
         spawnActive[randomSpawnLocation] = true;
         currentIndex = randomSpawnLocation; 
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
+    }
+
+    public Transform GetCurrentCollectableLocation()
+    {
+        return currentCollectable.transform;
     }
 }

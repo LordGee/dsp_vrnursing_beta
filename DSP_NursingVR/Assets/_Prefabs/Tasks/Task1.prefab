@@ -135,6 +135,8 @@ MonoBehaviour:
   taskCanvas: {fileID: 1808595311132032, guid: 49d78e354114bfa4ba0f44ec26a398e9, type: 2}
   spawnCanvas: {fileID: 1952804230258888, guid: 5246c0caf146bd3449a87995586c6e65,
     type: 2}
+  triggerEventPrefab: {fileID: 1858868316850984, guid: 8eeb03d1ce8881442819a86c595b6e29,
+    type: 2}
   voiceOverAudioClips:
   - {fileID: 8300000, guid: 55d968f4e768ce24f9232566704e1629, type: 3}
   - {fileID: 8300000, guid: 1839dfe0a9b14094b936d901ad7162c5, type: 3}
@@ -142,10 +144,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e0a172f5d60ff204382ef6008ffe4618, type: 3}
   - {fileID: 8300000, guid: 32e2c5aabc5799b48a94105eafb0ce91, type: 3}
   taskInstructions:
-  - "Hello, your first mission is to get 3 packets of aspirin from the medicine cabinet
-    at the end of the ward. On your way there, help any patients and nurses that are
-    in need. Don\u2019t forget to keep an eye-out for any obstacles and select them
-    to remove the hazard before someone gets hurt."
+  - "Hello, your first mission is to get 3 packets of aspirin. On your way there,
+    help any patients and nurses that are in need. Don\u2019t forget to keep an eye-out
+    for any obstacles and select them to remove the hazard before someone gets hurt."
   - 'If you press the menu button on your controller, you will see your personal stats
     menu. '
   - "Keep an eye on your levels of hydration, energy and health. If your levels get

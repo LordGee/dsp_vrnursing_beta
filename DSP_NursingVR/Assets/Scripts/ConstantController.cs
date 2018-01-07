@@ -52,6 +52,7 @@ public class ConstantController {
 
     // GameObjects
     public const string GO_STATUS_CANVAS = "StatusCanvas";
+    public const string GO_FOOT_COLLIDER = "[VRTK][AUTOGEN][FootColliderContainer]";
 
     // Pipe Game
     public enum PIPE_PIECES
