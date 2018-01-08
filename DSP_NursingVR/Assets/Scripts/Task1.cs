@@ -30,7 +30,6 @@ public class Task1 : MonoBehaviour
     {
         if (!isActive)
         {
-            Debug.Log(isActive);
             spawnTimer += Time.deltaTime;
             if (spawnTimer > 60 || FindObjectOfType<GameController>().GetGameTimer() < 60)
             {
@@ -107,6 +106,8 @@ public class Task1 : MonoBehaviour
         itemCount++;
         if (itemCount >= AMOUNT_TO_WIN) {
             WinTask();
+        } else if (itemCount == 1) {
+            FindObjectOfType<TaskController>().InitiateTask(2);
         }
     }
 

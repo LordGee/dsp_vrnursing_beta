@@ -20,7 +20,7 @@ public class TaskController : MonoBehaviour
         InitiateTask(0);
     }
 
-    private void InitiateTask(int _index)
+    public void InitiateTask(int _index)
     {
         currentTask.Add(Instantiate(tasks[_index]));
     }

@@ -84,8 +84,8 @@ public class Task3 : MonoBehaviour {
     {
         EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
         // float newX = (bed.transform.parent.position.x > 0) ? 2.5f : -2.5f;
-        taskCanvas.transform.Find("Instructions").GetComponent<Text>().text = taskInstructions;
         canvas = Instantiate( taskCanvas, bed.transform );
+        GameObject.Find("Instructions").GetComponent<Text>().text = taskInstructions;
         taskMachine = Instantiate(taskAcceptor, bed.transform);
         step++;
     }
