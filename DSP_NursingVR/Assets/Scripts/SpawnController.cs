@@ -60,6 +60,7 @@ public class SpawnController : MonoBehaviour {
     public void CollectObject()
     {
         EndObject(ref currentCollectable, ref currentCollectableIndex, ConstantController.EV_COLLECTED, 100f);
+        FindObjectOfType<Task1>().ItemHasBeenCollected();
     }
 
     private void EndObject(ref GameObject _item, ref int _index, string _event, float _score)
@@ -81,8 +82,5 @@ public class SpawnController : MonoBehaviour {
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
     }
 
-    public Transform GetCurrentCollectableLocation()
-    {
-        return currentCollectable.transform;
-    }
+    public Transform GetCurrentCollectableLocation() { return currentCollectable.transform; }
 }

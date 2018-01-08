@@ -20,8 +20,7 @@ public class GameController : MonoBehaviour {
 
     private void Start() {
         currentGameState = ConstantController.GAME_STATE.Brief;
-        hydrationTimer = 0f;
-        hungerTimer = 0f;
+        hydrationTimer = hungerTimer = 0f;
         CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
         CanvasController.gameEnergy = hungerLevel = ConstantController.HUNGER_MAX;
         EventController.TriggerEvent(ConstantController.EV_SPAWN_FOOD);
@@ -62,14 +61,20 @@ public class GameController : MonoBehaviour {
         CanvasController.gameEnergy = hungerLevel = ConstantController.HUNGER_MAX;
         hungerTimer = 0f;
         AdjustFadeColor();
-        EventController.TriggerEvent(ConstantController.EV_SPAWN_FOOD);
+        StartCoroutine(DelayNewSpawn(ConstantController.EV_SPAWN_FOOD));
     }
 
     public void ReplenishHydrationLevel() {
         CanvasController.gameHydration = hydrationLevel = ConstantController.HYDRATION_MAX;
         hydrationTimer = 0f;
         AdjustFadeColor();
-        EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
+        StartCoroutine(DelayNewSpawn(ConstantController.EV_SPAWN_WATER));
+    }
+
+    private IEnumerator DelayNewSpawn(string _spawn)
+    {
+        yield return new WaitForSeconds(10f);
+        EventController.TriggerEvent(_spawn);
     }
 
 
@@ -131,6 +136,11 @@ public class GameController : MonoBehaviour {
     public void UpdateGameTimer() {
         CanvasController.gameTimer = gameTimer;
         EventController.TriggerEvent(ConstantController.EV_UPDATE_STATUS_CANVAS);
+    }
+
+    public float GetGameTimer()
+    {
+        return gameTimer;
     }
 
     void OnEnable()

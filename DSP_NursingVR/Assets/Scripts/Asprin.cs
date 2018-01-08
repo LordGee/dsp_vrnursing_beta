@@ -1,11 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class Asprin : MonoBehaviour
 {
+    private bool test = false;
+
+    void OnTriggerEnter(Collider _col)
+    {
+        test = !test;
+    }
+
+    void OnTriggerExit(Collider _col)
+    {
+        test = !test;
+    }
+
     void OnTriggerStay(Collider _col)
     {
-        if ( _col.transform.parent.transform.parent.tag == "Player" )
+        if (test && _col.transform.parent.transform.parent.tag == "Player" )
         {
             if ( _col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed() )
             {
