@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 23537239061418174}
   - component: {fileID: 64395058747360222}
   m_Layer: 0
-  m_Name: pCube7
+  m_Name: SideUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,9 +472,10 @@ GameObject:
   - component: {fileID: 64539864586161528}
   - component: {fileID: 114206744053284596}
   - component: {fileID: 114358558919872764}
-  - component: {fileID: 114537371816961506}
+  - component: {fileID: 114596387998478668}
+  - component: {fileID: 114339427605692650}
   m_Layer: 0
-  m_Name: pCylinder36
+  m_Name: Monitor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +632,7 @@ Transform:
   m_GameObject: {fileID: 1840175257816230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0554, y: 0.0197, z: 0.0121}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 4168129283076872}
   m_Father: {fileID: 4264221994771786}
@@ -861,13 +862,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1908480114331658}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.03928, y: 0.01713, z: 0.0312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4577249904076530}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4817815398989154
 Transform:
   m_ObjectHideFlags: 1
@@ -1797,7 +1798,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Convex: 1
-  m_CookingOptions: 14
+  m_CookingOptions: -1
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 0ec194bdc9b21364d90a5166ebc6ec91, type: 3}
 --- !u!64 &64935456864328748
@@ -1947,6 +1948,23 @@ MonoBehaviour:
   customOutlineModels: []
   customOutlineModelPaths: []
   enableSubmeshHighlight: 0
+--- !u!114 &114339427605692650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1908480114331658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec2ac476f2fc9a45a4e69712580a603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  precisionGrab: 1
+  rightSnapHandle: {fileID: 0}
+  leftSnapHandle: {fileID: 0}
+  throwVelocityWithAttachDistance: 1
+  throwMultiplier: 1
+  onGrabCollisionDelay: 0
 --- !u!114 &114358558919872764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1968,7 +1986,7 @@ MonoBehaviour:
   validDrop: 1
   grabOverrideButton: 7
   allowedGrabControllers: 0
-  grabAttachMechanicScript: {fileID: 114537371816961506}
+  grabAttachMechanicScript: {fileID: 114339427605692650}
   secondaryGrabActionScript: {fileID: 0}
   isUsable: 0
   holdButtonToUse: 1
@@ -2007,7 +2025,7 @@ MonoBehaviour:
   useOverrideButton: 0
   allowedUseControllers: 0
   usingState: 0
---- !u!114 &114537371816961506
+--- !u!114 &114596387998478668
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2015,19 +2033,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908480114331658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99490d2901160b540b6ce6a321816a4d, type: 3}
+  m_Script: {fileID: 11500000, guid: f6fa39aa8ca3a144087eb147d2b3a9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  precisionGrab: 1
-  rightSnapHandle: {fileID: 0}
-  leftSnapHandle: {fileID: 0}
-  throwVelocityWithAttachDistance: 1
-  throwMultiplier: 1
-  onGrabCollisionDelay: 0
-  destroyImmediatelyOnThrow: 1
-  breakForce: 1500
-  strength: 500
-  damper: 50
 --- !u!114 &114781536984464856
 MonoBehaviour:
   m_ObjectHideFlags: 1
