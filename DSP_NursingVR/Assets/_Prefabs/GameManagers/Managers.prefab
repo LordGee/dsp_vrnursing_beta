@@ -310,7 +310,7 @@ MonoBehaviour:
   waterObject: {fileID: 1547140894355492, guid: 407d6389ebb18354f8e0027c93fd0e92,
     type: 2}
   foodObject: {fileID: 1374517728147766, guid: 610b19a2b79780a4ab2253b99f038759, type: 2}
-  collectableObject: {fileID: 1118763608672456, guid: ee0fb3ec387e7be4e9fc3fa82459d9a6,
+  collectableObject: {fileID: 1910741580207038, guid: 648559e3029e0274381914e2db69d8f4,
     type: 2}
 --- !u!114 &114670961070120160
 MonoBehaviour:
