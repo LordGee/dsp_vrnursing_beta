@@ -26,6 +26,7 @@ public class ConstantController {
     public const float HUNGER_MAX = 8f;
     public const float HUNGER_DECREASE_TIME = 36f;
     public const float GAME_TIME = 300f;
+    public const float TASK_TIME = 120f;
 
     // Interactable Objects
     public const string TAG_PICKUP = "Pickup";

@@ -9,7 +9,7 @@ public class TaskController : MonoBehaviour
 
     public GameObject[] tasks;
 
-    private List<GameObject> currentTask;
+    private List<GameObject> currentTask; // TODO: Does this need to exist!
     private int currentIndex;
     private int selectedOption;
 
@@ -17,7 +17,7 @@ public class TaskController : MonoBehaviour
     {
         selectedOption = 0;
         currentTask = new List<GameObject>();
-        InitiateTask(0);
+        InitiateTask(1);
     }
 
     public void InitiateTask(int _index)

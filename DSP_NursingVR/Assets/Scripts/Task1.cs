@@ -107,7 +107,7 @@ public class Task1 : MonoBehaviour
         if (itemCount >= AMOUNT_TO_WIN) {
             WinTask();
         } else if (itemCount == 1) {
-            FindObjectOfType<TaskController>().InitiateTask(2);
+            FindObjectOfType<TaskController>().InitiateTask(1);
         }
     }
 
