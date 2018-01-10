@@ -73,9 +73,9 @@ public class SpawnController : MonoBehaviour {
     }
 
     private void SpawnObject(GameObject _obj, ref GameObject _current) {
-        int randomSpawnLocation = Random.Range(0, spawnPoints.Length);
+        int randomSpawnLocation = Random.Range(2, spawnPoints.Length);
         while (spawnActive[randomSpawnLocation]) {
-            randomSpawnLocation = Random.Range(0, spawnPoints.Length);
+            randomSpawnLocation = Random.Range(2, spawnPoints.Length);
         }
         spawnActive[randomSpawnLocation] = true;
         currentIndex = randomSpawnLocation; 
