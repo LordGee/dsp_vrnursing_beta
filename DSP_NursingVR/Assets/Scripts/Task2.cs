@@ -13,23 +13,23 @@ public class Task2 : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        for (int i = 0; i < objectSuccess.Length; i++) {
-            if (!objectSuccess[i]) { winStatus = false; }
-        }
 
-        if (winStatus) { WinTask(); }
-        else
-        {
-            Debug.Log("Not won yet");
-        }
-    }
 
     public void UpdateObjectResult(int _index)
     {
         objectSuccess[_index] = true;
         Debug.Log("Bool is now " + objectSuccess[_index]);
+        TestForWinCondition();
+    }
+
+    private void TestForWinCondition()
+    {
+        for ( int i = 0; i < objectSuccess.Length; i++ )
+        {
+            if ( !objectSuccess[i] ) { winStatus = false; }
+        }
+
+        if ( winStatus ) { WinTask(); } 
     }
 
     private void WinTask()
