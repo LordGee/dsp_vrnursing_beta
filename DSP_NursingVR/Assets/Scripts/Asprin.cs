@@ -4,6 +4,13 @@ using Valve.VR.InteractionSystem;
 
 public class Asprin : MonoBehaviour
 {
+    public void CollectedAsprin()
+    {
+        FindObjectOfType<SpawnController>().CollectObject();
+    }
+
+
+    /*
     private bool test = false;
 
     void OnTriggerEnter(Collider _col)
@@ -26,4 +33,5 @@ public class Asprin : MonoBehaviour
             }
         }
     }
+    */
 }

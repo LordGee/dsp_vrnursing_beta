@@ -79,7 +79,6 @@ public class SpawnController : MonoBehaviour {
         }
         spawnActive[randomSpawnLocation] = true;
         currentIndex = randomSpawnLocation; 
-        Debug.Log(spawnPoints[randomSpawnLocation].name);
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
     }
 
