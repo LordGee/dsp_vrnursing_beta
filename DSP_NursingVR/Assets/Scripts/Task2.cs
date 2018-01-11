@@ -7,11 +7,12 @@ public class Task2 : MonoBehaviour
     private bool[] objectSuccess;
     private bool winStatus, once;
     private float taskTimer;
+    private const int TASK_INDEX = 1;
 
 
     void Start()
     {
-        Instantiate(bed7);
+        bed7 = Instantiate(bed7);
         taskTimer = ConstantController.TASK_TIME;
         objectSuccess = new bool[3];
         for (int i = 0; i < objectSuccess.Length; i++) {
@@ -26,10 +27,14 @@ public class Task2 : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        Destroy(bed7);
+    }
+
     public void UpdateObjectResult(int _index)
     {
         objectSuccess[_index] = true;
-        Debug.Log("Bool is now " + objectSuccess[_index]);
         TestForWinCondition();
     }
 
@@ -48,9 +53,9 @@ public class Task2 : MonoBehaviour
     {
         if (!once)
         {
-            Debug.Log("You Win!");
-            FindObjectOfType<GameController>().UpdateGameScore(80f + taskTimer);
-            EventController.TriggerEvent(ConstantController.TASK_COMPLETE, 1f);
+            EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 80f + Mathf.Floor(taskTimer));
+            EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
+            FindObjectOfType<TaskController>().InitiateTask(TASK_INDEX + 1);
             once = true;
         }
     }

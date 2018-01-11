@@ -15,7 +15,7 @@ public class Monitor : MonoBehaviour
                 GetComponent<Rigidbody>().useGravity = false;
                 GetComponent<Rigidbody>().isKinematic = true;
                 FindObjectOfType<Task2>().UpdateObjectResult(0);
-                FindObjectOfType<GameController>().UpdateGameScore(40f);
+                EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 40f);
             }
         }
     }

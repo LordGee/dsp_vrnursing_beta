@@ -10,7 +10,7 @@ public class Bottle : MonoBehaviour
             if ( !GetComponent<VRTK_InteractableObject>().IsGrabbed() )
             {
                 FindObjectOfType<Task2>().UpdateObjectResult(2);
-                FindObjectOfType<GameController>().UpdateGameScore(40f);
+                EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 40f);
                 Destroy(gameObject.transform.parent.gameObject);
             }
         }

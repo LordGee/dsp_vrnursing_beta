@@ -9,7 +9,7 @@ public class TaskController : MonoBehaviour
 
     public GameObject[] tasks;
 
-    private List<GameObject> currentTask; // TODO: Does this need to exist!
+    private List<GameObject> currentTask; 
     private int currentIndex;
     private int selectedOption;
 
@@ -17,7 +17,7 @@ public class TaskController : MonoBehaviour
     {
         selectedOption = 0;
         currentTask = new List<GameObject>();
-        InitiateTask(1);
+        InitiateTask(0);
     }
 
     public void InitiateTask(int _index)
@@ -31,7 +31,7 @@ public class TaskController : MonoBehaviour
     }
 
     private IEnumerator EndTask(int _index) {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         Destroy(currentTask[_index]);
     }
 

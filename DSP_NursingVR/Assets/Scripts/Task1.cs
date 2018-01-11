@@ -13,6 +13,7 @@ public class Task1 : MonoBehaviour
     private int itemCount, voiceIndex;
     private float spawnTimer = 0;
     private const int AMOUNT_TO_WIN = 3;
+    private const int TASK_INDEX = 0;
 
     void Start()
     {
@@ -33,7 +34,6 @@ public class Task1 : MonoBehaviour
             spawnTimer += Time.deltaTime;
             if (spawnTimer > 60 || FindObjectOfType<GameController>().GetGameTimer() < 60)
             {
-                Debug.Log("Spawning");
                 SpawnNewCollectable();
             }
         }
@@ -95,8 +95,6 @@ public class Task1 : MonoBehaviour
         spawnTimer = 0f;
     }
 
-    
-
     public bool GetIsActive() { return isActive; }
     
     public void ItemHasBeenCollected()
@@ -107,14 +105,15 @@ public class Task1 : MonoBehaviour
         if (itemCount >= AMOUNT_TO_WIN) {
             WinTask();
         } else if (itemCount == 1) {
-            FindObjectOfType<TaskController>().InitiateTask(1);
+            FindObjectOfType<TaskController>().InitiateTask(TASK_INDEX + 1);
+        } else if ( itemCount == 2 ) {
+            FindObjectOfType<TaskController>().InitiateTask(TASK_INDEX + 2);
         }
     }
 
     private void WinTask()
     {
-        Debug.Log("Task 1 Completed");
-        EventController.TriggerEvent(ConstantController.TASK_COMPLETE, 0);
-        // destroy this
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, Mathf.Floor(FindObjectOfType<GameController>().GetGameTimer()));
+        EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
     }
 }

@@ -15,6 +15,7 @@ public class Task3 : MonoBehaviour {
     private bool lightStatus;
     private int step;
     private PipeManager pm;
+    private const int TASK_INDEX = 2;
 
     void Start()
     {
@@ -113,7 +114,6 @@ public class Task3 : MonoBehaviour {
         Destroy(taskMachine);
         task = Instantiate(taskChallenge);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player.name + " Rotation = " + gamePosition.transform.rotation);
         player.transform.position = gamePosition.transform.position;
         player.transform.rotation = gamePosition.transform.rotation;
         step++;
@@ -142,11 +142,10 @@ public class Task3 : MonoBehaviour {
         {
             once = true;
             step++;
-            Debug.Log("WINNER!!! - " + taskTimer.ToString("F"));
             EventController.StopListening(ConstantController.TASK_WIN, WinTask);
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, taskTimer);
             PipeManager.DropUnusedPipes();
-            EventController.TriggerEvent(ConstantController.TASK_COMPLETE, 2);
+            EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
         }
     }
 
