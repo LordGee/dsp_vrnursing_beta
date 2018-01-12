@@ -33,15 +33,12 @@ public class Task3 : MonoBehaviour {
     {
         if (step == 1) {
             SignalNewTask();
-        }  else if (step == 3) {
-            // RotateInstructions();
-        } else if (step == 5) {
+        }  else if (step == 5) {
             taskTimer -= Time.deltaTime;
             if (Mathf.Floor(taskTimer) != Mathf.Floor(timerUpdate)) {
                 GameObject.Find("Timer").GetComponent<TextMesh>().text = taskTimer.ToString("F0");
                 timerUpdate = Mathf.Floor(taskTimer);
             }
-            
             if (taskTimer <= 0) {
                 taskTimer = 0;
                 WinTask();
@@ -84,7 +81,6 @@ public class Task3 : MonoBehaviour {
     private void LaunchInstructions()
     {
         EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
-        // float newX = (bed.transform.parent.position.x > 0) ? 2.5f : -2.5f;
         canvas = Instantiate( taskCanvas, bed.transform );
         GameObject.Find("Instructions").GetComponent<Text>().text = taskInstructions;
         taskMachine = Instantiate(taskAcceptor, bed.transform);
@@ -97,13 +93,6 @@ public class Task3 : MonoBehaviour {
             GameObject teleportPoint = trigger.transform.Find("TeleportPoint").gameObject;
             teleportPoint.transform.Rotate(Vector3.up, 180f);
         }
-        /*
-        // GameObject player = GameObject.FindGameObjectWithTag("MainCamera");
-        Vector3 rotateTo = bed.transform.forward * 1f;
-        GameObject teleportPoint = trigger.transform.Find("TeleportPoint").gameObject;
-        Quaternion rotate = Quaternion.LookRotation(rotateTo - teleportPoint.transform.localPosition);
-        teleportPoint.transform.localRotation = Quaternion.RotateTowards(teleportPoint.transform.localRotation, rotate, 360f);
-        */
     }
 
     private void LaunchGame()
@@ -122,8 +111,7 @@ public class Task3 : MonoBehaviour {
     private bool onlyOnce = false;
     public void AcceptButton()
     {
-        if (!onlyOnce)
-        {
+        if (!onlyOnce) {
             step++;
             onlyOnce = true;
             LaunchGame();
@@ -131,15 +119,13 @@ public class Task3 : MonoBehaviour {
     }
 
     public void DelegateButton() {
-        EventController.StopListening(ConstantController.TASK_DELEGATE, DelegateButton);
         Debug.Log("DELEGATE");
     }
 
     private bool once;
     public void WinTask()
     {
-        if (!once)
-        {
+        if (!once) {
             once = true;
             step++;
             EventController.StopListening(ConstantController.TASK_WIN, WinTask);
@@ -149,15 +135,12 @@ public class Task3 : MonoBehaviour {
         }
     }
 
-    
-
     private void OnEnable() {
         EventController.StartListening(ConstantController.TASK_DELEGATE, DelegateButton);
     }
 
     private void OnDisable() {
-        
-
+        EventController.StopListening(ConstantController.TASK_DELEGATE, DelegateButton);
     }
 }
 

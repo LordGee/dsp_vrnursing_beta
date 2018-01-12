@@ -27,7 +27,12 @@ public class TaskController : MonoBehaviour
 
     private void TaskCompleted(float _index)
     {
-        StartCoroutine(EndTask((int)_index));
+        if ( currentTask[(int)_index] != null ) {
+            StartCoroutine(EndTask((int)_index));
+        } else {
+            Debug.LogWarning("Unable to destroy task " + _index + " because it does not exist");
+        }
+        
     }
 
     private IEnumerator EndTask(int _index) {

@@ -55,7 +55,6 @@ public class Task2 : MonoBehaviour
         {
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 80f + Mathf.Floor(taskTimer));
             EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
-            FindObjectOfType<TaskController>().InitiateTask(TASK_INDEX + 1);
             once = true;
         }
     }
