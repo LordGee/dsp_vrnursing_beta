@@ -51,8 +51,7 @@ public class Task2 : MonoBehaviour
 
     private void WinTask()
     {
-        if (!once)
-        {
+        if (!once) {
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 80f + Mathf.Floor(taskTimer));
             EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
             once = true;
