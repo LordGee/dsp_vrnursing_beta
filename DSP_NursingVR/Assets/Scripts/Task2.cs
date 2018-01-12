@@ -4,20 +4,16 @@ public class Task2 : MonoBehaviour
 {
     public GameObject bed7;
 
+    private GameObject telephone;
     private bool[] objectSuccess;
-    private bool winStatus, once;
+    private bool winStatus, once, phoneAnswered;
     private float taskTimer;
     private const int TASK_INDEX = 1;
 
 
     void Start()
     {
-        bed7 = Instantiate(bed7);
-        taskTimer = ConstantController.TASK_TIME;
-        objectSuccess = new bool[3];
-        for (int i = 0; i < objectSuccess.Length; i++) {
-            objectSuccess[i] = false;
-        }
+        telephone = GameObject.Find("Telephone");
     }
 
     void Update()
@@ -30,6 +26,17 @@ public class Task2 : MonoBehaviour
     private void OnDestroy()
     {
         Destroy(bed7);
+    }
+
+    private void StartTask()
+    {
+        bed7 = Instantiate(bed7);
+        taskTimer = ConstantController.TASK_TIME;
+        objectSuccess = new bool[3];
+        for ( int i = 0; i < objectSuccess.Length; i++ )
+        {
+            objectSuccess[i] = false;
+        }
     }
 
     public void UpdateObjectResult(int _index)
