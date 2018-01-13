@@ -6,7 +6,7 @@ public class Telephone : MonoBehaviour
     public AudioClip[] phoneInstructions;
     public AudioClip ringer;
 
-    private AudioSource audio;
+    private new AudioSource audio;
     private bool ring, answered;
 
     void Start()
