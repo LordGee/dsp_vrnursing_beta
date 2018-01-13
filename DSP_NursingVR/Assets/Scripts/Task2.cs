@@ -58,6 +58,7 @@ public class Task2 : MonoBehaviour
             objectSuccess[i] = false;
         }
         taskStarted = true;
+        GameObject.Find("Counter").GetComponent<TextMesh>().text = "0 / 3";
     }
 
     public void UpdateObjectResult(int _index)
@@ -69,9 +70,15 @@ public class Task2 : MonoBehaviour
     private void TestForWinCondition()
     {
         winStatus = true;
+        int counter = 0;
         for ( int i = 0; i < objectSuccess.Length; i++ ) {
-            if ( !objectSuccess[i] ) { winStatus = false; }
+            if (!objectSuccess[i]) {
+                winStatus = false;
+            } else {
+                counter++;
+            }
         }
+        GameObject.Find("Counter").GetComponent<TextMesh>().text = counter + " / 3";
         if (winStatus) {
             FindObjectOfType<Telephone>().PrepareReturnCall();
             taskTimer += 30f;
