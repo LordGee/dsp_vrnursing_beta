@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using VRTK;
 
 public class Telephone : MonoBehaviour
 {
@@ -12,19 +13,27 @@ public class Telephone : MonoBehaviour
     void Start()
     {
         audio = GetComponent<AudioSource>();
+        StartCheckingCollisions(false);
+    }
+
+    public void StartCheckingCollisions(bool _bool)
+    {
+        GetComponent<Rigidbody>().detectCollisions = _bool;
     }
 
     public void StartRinging()
     {
+        StartCheckingCollisions(true);
         audio.clip = ringer;
         audio.Play();
         ring = true;
         answered = false;
-        RepeatRing(audio.clip.length);
+        StartCoroutine(RepeatRing(audio.clip.length));
     }
 
     public void StopRinging()
     {
+        StartCheckingCollisions(false);
         audio.Stop();
         ring = false;
         answered = true;
@@ -33,18 +42,24 @@ public class Telephone : MonoBehaviour
     private IEnumerator RepeatRing(float _length)
     {
         yield return new WaitForSeconds(_length);
-        if ( audio.isPlaying )
-        {
-            RepeatRing(1f);
-        }
-        else if (ring) {
+        if ( audio.isPlaying ) {
+            StartCoroutine(RepeatRing(1f));
+        } else if (ring) {
             StartRinging();
+        }
+    }
+
+    void OnTriggerStay(Collider _col)
+    {
+        if ( _col.transform.parent.transform.parent.tag == "Player" && ring && FindObjectOfType<PlayerControllers>().CheckGripPressed())
+        {
+            AnswerThePhone();
         }
     }
 
     public void AnswerThePhone()
     {
-        if (!answered)
+        if ( !answered )
         {
             StopRinging();
             if ( !FindObjectOfType<Task2>().GetWinStatus() )
@@ -60,7 +75,7 @@ public class Telephone : MonoBehaviour
     {
         yield return new WaitForSeconds(_length);
         if (audio.isPlaying) {
-            NextClip(_index, 1f);
+            StartCoroutine(NextClip(_index, 1f));
         } else {
             audio.clip = phoneInstructions[_index];
             audio.Play();
