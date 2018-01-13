@@ -6,8 +6,8 @@ public class Task2 : MonoBehaviour
 
     private GameObject telephone, bed7Object;
     private bool[] objectSuccess;
-    private bool winStatus, once, phoneAnswered;
-    private float taskTimer;
+    private bool winStatus, once, phoneAnswered, taskStarted;
+    private float taskTimer, timerUpdate;
     private const int TASK_INDEX = 1;
 
 
@@ -19,8 +19,23 @@ public class Task2 : MonoBehaviour
 
     void Update()
     {
-        if (!winStatus) {
+        if (taskStarted)
+        {
             taskTimer -= Time.deltaTime;
+            if ( taskTimer < 0 ) {
+                taskTimer = 0;
+                taskStarted = false;
+                FindObjectOfType<Telephone>().PrepareFailedCall();
+            } else if ( taskTimer < 60f && taskTimer > 30f ) {
+                GameObject.Find("Timer").GetComponent<TextMesh>().color = new Color(1f, 0.8f, 0.4f, 1f);
+            } else if ( taskTimer < 30f ) {
+                GameObject.Find("Timer").GetComponent<TextMesh>().color = new Color(1f, 0f, 0f, 1f);
+            }
+            if ( Mathf.Floor(taskTimer) != Mathf.Floor(timerUpdate) )
+            {
+                GameObject.Find("Timer").GetComponent<TextMesh>().text = taskTimer.ToString("F0");
+                timerUpdate = Mathf.Floor(taskTimer);
+            }
         }
     }
 
@@ -34,7 +49,7 @@ public class Task2 : MonoBehaviour
         telephone.GetComponent<Telephone>().StartRinging();
     }
 
-    private void StartTask()
+    public void StartTask()
     {
         bed7Object = Instantiate(bed7);
         taskTimer = ConstantController.TASK_TIME;
@@ -42,6 +57,7 @@ public class Task2 : MonoBehaviour
         for ( int i = 0; i < objectSuccess.Length; i++ ) {
             objectSuccess[i] = false;
         }
+        taskStarted = true;
     }
 
     public void UpdateObjectResult(int _index)
@@ -56,17 +72,26 @@ public class Task2 : MonoBehaviour
         for ( int i = 0; i < objectSuccess.Length; i++ ) {
             if ( !objectSuccess[i] ) { winStatus = false; }
         }
-        if ( winStatus ) { WinTask(); } 
+        if (winStatus) {
+            FindObjectOfType<Telephone>().PrepareReturnCall();
+            taskTimer += 30f;
+        } 
     }
 
     public bool GetWinStatus() { return winStatus; }
 
-    private void WinTask()
+    public void WinTask(float _bonus)
     {
         if (!once) {
-            EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 80f + Mathf.Floor(taskTimer));
+            EventController.StopListening(ConstantController.TASK_WIN, WinTask);
+            EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _bonus + Mathf.Floor(taskTimer));
             EventController.TriggerEvent(ConstantController.TASK_COMPLETE, TASK_INDEX);
             once = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        EventController.StartListening(ConstantController.TASK_WIN, WinTask);
     }
 }
