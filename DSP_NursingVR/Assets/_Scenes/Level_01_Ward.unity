@@ -749,8 +749,11 @@ GameObject:
   - component: {fileID: 485028910}
   - component: {fileID: 485028909}
   - component: {fileID: 485028908}
+  - component: {fileID: 485028913}
+  - component: {fileID: 485028915}
+  - component: {fileID: 485028914}
   m_Layer: 0
-  m_Name: telephone_unity1
+  m_Name: Telephone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +854,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &485028909
 MonoBehaviour:
@@ -866,7 +869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   unhighlightOnDisable: 1
-  thickness: 0.02
+  thickness: 0.2
   customOutlineModels: []
   customOutlineModelPaths: []
   enableSubmeshHighlight: 0
@@ -886,7 +889,7 @@ MonoBehaviour:
   touchHighlightColor: {r: 0.2612308, g: 0.9117647, b: 0.2078287, a: 0}
   allowedTouchControllers: 0
   ignoredColliders: []
-  isGrabbable: 0
+  isGrabbable: 1
   holdButtonToGrab: 0
   stayGrabbedOnTeleport: 0
   validDrop: 1
@@ -894,7 +897,7 @@ MonoBehaviour:
   allowedGrabControllers: 0
   grabAttachMechanicScript: {fileID: 0}
   secondaryGrabActionScript: {fileID: 0}
-  isUsable: 0
+  isUsable: 1
   holdButtonToUse: 1
   useOnlyIfGrabbed: 0
   pointerActivatesUseAction: 0
@@ -944,6 +947,110 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 485028906}
   m_Mesh: {fileID: 4300000, guid: 1433f64b2b28bad4883bf2379a49e079, type: 3}
+--- !u!64 &485028913
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 485028906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 1433f64b2b28bad4883bf2379a49e079, type: 3}
+--- !u!114 &485028914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 485028906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f96f1837f21d4bf9a77ff61e7b81f20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTouch:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnUntouch:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 485028915}
+        m_MethodName: AnswerThePhone
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnUngrab:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnUse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnUnuse:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnEnterSnapDropZone:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnExitSnapDropZone:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnSnapToDropZone:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  OnUnsnapFromDropZone:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &485028915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 485028906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8232cb32aa406f4b9317dea30e407ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phoneInstructions:
+  - {fileID: 8300000, guid: 60f9a205a05144e4ab74383026cff475, type: 3}
+  - {fileID: 8300000, guid: cdc4bdedd15a85940b7a4fbd670cf8cc, type: 3}
+  - {fileID: 8300000, guid: f1587266b47f4dc4980733ab9476f728, type: 3}
+  - {fileID: 8300000, guid: 4cc05afe87631b84181a2475a12353af, type: 3}
+  - {fileID: 8300000, guid: 88ad377cf7d0ba9478b9d72301cb37ef, type: 3}
+  - {fileID: 8300000, guid: 219bdfc0f27a77344bd1fe28dde7d645, type: 3}
 --- !u!1 &615876284
 GameObject:
   m_ObjectHideFlags: 0

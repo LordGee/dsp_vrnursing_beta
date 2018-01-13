@@ -14,6 +14,7 @@ public class Task2 : MonoBehaviour
     void Start()
     {
         telephone = GameObject.Find("Telephone");
+        MakeTheCall();
     }
 
     void Update()
@@ -25,7 +26,12 @@ public class Task2 : MonoBehaviour
 
     private void OnDestroy()
     {
-        Destroy(bed7);
+        DestroyImmediate(bed7);
+    }
+
+    private void MakeTheCall()
+    {
+        telephone.GetComponent<Telephone>().StartRinging();
     }
 
     private void StartTask()
@@ -55,6 +61,8 @@ public class Task2 : MonoBehaviour
 
         if ( winStatus ) { WinTask(); } 
     }
+
+    public bool GetWinStatus() { return winStatus; }
 
     private void WinTask()
     {
