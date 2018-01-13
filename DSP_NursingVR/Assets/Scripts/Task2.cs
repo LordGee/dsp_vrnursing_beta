@@ -4,7 +4,7 @@ public class Task2 : MonoBehaviour
 {
     public GameObject bed7;
 
-    private GameObject telephone;
+    private GameObject telephone, bed7Object;
     private bool[] objectSuccess;
     private bool winStatus, once, phoneAnswered;
     private float taskTimer;
@@ -26,7 +26,7 @@ public class Task2 : MonoBehaviour
 
     private void OnDestroy()
     {
-        DestroyImmediate(bed7);
+        Destroy(bed7Object);
     }
 
     private void MakeTheCall()
@@ -36,11 +36,10 @@ public class Task2 : MonoBehaviour
 
     private void StartTask()
     {
-        bed7 = Instantiate(bed7);
+        bed7Object = Instantiate(bed7);
         taskTimer = ConstantController.TASK_TIME;
         objectSuccess = new bool[3];
-        for ( int i = 0; i < objectSuccess.Length; i++ )
-        {
+        for ( int i = 0; i < objectSuccess.Length; i++ ) {
             objectSuccess[i] = false;
         }
     }
@@ -54,11 +53,9 @@ public class Task2 : MonoBehaviour
     private void TestForWinCondition()
     {
         winStatus = true;
-        for ( int i = 0; i < objectSuccess.Length; i++ )
-        {
+        for ( int i = 0; i < objectSuccess.Length; i++ ) {
             if ( !objectSuccess[i] ) { winStatus = false; }
         }
-
         if ( winStatus ) { WinTask(); } 
     }
 

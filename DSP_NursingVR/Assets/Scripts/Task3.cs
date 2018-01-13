@@ -104,7 +104,7 @@ public class Task3 : MonoBehaviour {
         task = Instantiate(taskChallenge);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         player.transform.position = gamePosition.transform.position;
-        player.transform.rotation = gamePosition.transform.rotation;
+        player.transform.rotation = gamePosition.transform.localRotation;
         step++;
     }
 
