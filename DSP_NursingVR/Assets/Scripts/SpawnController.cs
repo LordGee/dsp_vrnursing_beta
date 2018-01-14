@@ -12,7 +12,7 @@ public class SpawnController : MonoBehaviour {
     private bool[] spawnActive;
     private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentCollectableIndex = -1;
 
-    void Start () {
+    void Awake () {
         GameObject spawn = GameObject.Find("SpawnPoints");
         spawnPoints = spawn.GetComponentsInChildren<Transform>();
         spawnActive = new bool[spawnPoints.Length];
