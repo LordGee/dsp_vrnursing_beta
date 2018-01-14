@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114378761498881180}
   - component: {fileID: 114845959384202410}
   - component: {fileID: 114988844026455360}
+  - component: {fileID: 114632657478638990}
   m_Layer: 0
   m_Name: bottle
   m_TagString: Untagged
@@ -332,7 +333,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &64682397404397394
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -377,6 +378,17 @@ MonoBehaviour:
   useOverrideButton: 0
   allowedUseControllers: 0
   usingState: 0
+--- !u!114 &114632657478638990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1076167516816038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1cd1cfcfc3dd640a0e3d7116fcbf67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114845959384202410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,7 +439,18 @@ MonoBehaviour:
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnUse:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114632657478638990}
+        m_MethodName: HazardRemoved
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: VRTK.UnityEventHelper.VRTK_InteractableObject_UnityEvents+InteractableObjectEvent,
       Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   OnUnuse:
