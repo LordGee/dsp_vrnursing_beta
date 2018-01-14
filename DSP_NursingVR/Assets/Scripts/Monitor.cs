@@ -3,6 +3,8 @@ using VRTK;
 
 public class Monitor : MonoBehaviour
 {
+    public AudioClip clip;
+
     void OnCollisionEnter(Collision _col)
     {
         if (_col != null && _col.transform.name == "SideUnit")
@@ -15,6 +17,7 @@ public class Monitor : MonoBehaviour
                 GetComponent<Rigidbody>().useGravity = false;
                 GetComponent<Rigidbody>().isKinematic = true;
                 FindObjectOfType<Task2>().UpdateObjectResult(0);
+                FindObjectOfType<Task2>().PlaySFX(clip);
                 EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 40f);
             }
         }

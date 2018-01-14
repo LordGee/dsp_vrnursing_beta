@@ -584,7 +584,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1653206354526510}
   m_LocalRotation: {x: -0.000000119209275, y: 0.9238796, z: 0.3826834, w: 0.00000026822087}
-  m_LocalPosition: {x: 4.736952e-16, y: 0.0588, z: -0.033100005}
+  m_LocalPosition: {x: 4.736952e-16, y: 0.0469, z: -0.033100005}
   m_LocalScale: {x: 0.00033333374, y: 0.00033333345, z: 0.00033333362}
   m_Children: []
   m_Father: {fileID: 4243267887729262}
@@ -2086,7 +2086,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4286119779
+    rgba: 4293236992
 --- !u!102 &102135947829170100
 TextMesh:
   serializedVersion: 3
@@ -2172,6 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3692462d578201c4a873a29a5b5820ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: 3fc7c43acb853a640a8525452562b3a4, type: 3}
 --- !u!114 &114158526849067734
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2363,6 +2364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3571931f853644e88bfbdcf0396111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: d352694398395674b8bc4d694ddc202e, type: 3}
 --- !u!114 &114828262296992882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2374,6 +2376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6fa39aa8ca3a144087eb147d2b3a9c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: bad1f61de7d8ec140aab1453d694bebc, type: 3}
 --- !u!114 &114967155215224346
 MonoBehaviour:
   m_ObjectHideFlags: 1

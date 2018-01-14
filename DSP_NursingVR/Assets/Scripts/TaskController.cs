@@ -17,7 +17,7 @@ public class TaskController : MonoBehaviour
     {
         selectedOption = 0;
         currentTask = new List<GameObject>();
-        InitiateTask(2);
+        InitiateTask(1);
     }
 
     public void InitiateTask(int _index)

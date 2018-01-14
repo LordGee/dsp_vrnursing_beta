@@ -85,6 +85,12 @@ public class Task2 : MonoBehaviour
         } 
     }
 
+    public void PlaySFX(AudioClip _clip)
+    {
+        GetComponent<AudioSource>().clip = _clip;
+        GetComponent<AudioSource>().Play();
+    }
+
     public bool GetWinStatus() { return winStatus; }
 
     public void WinTask(float _bonus)
