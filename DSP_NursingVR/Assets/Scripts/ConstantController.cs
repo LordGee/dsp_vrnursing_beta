@@ -8,6 +8,7 @@ public class ConstantController {
     public const string EV_SPAWN_WATER = "SpawnWaterEvent";
     public const string EV_SPAWN_FOOD = "SpawnFoodEvent";
     public const string EV_SPAWN_COLLECTABLE = "SpawnCollectableEvent";
+    public const string EV_SPAWN_HAZARD = "SpawnHazard";
     public const string EV_UPDATE_SCORE = "UpdateScoreEvent";
     public const string EV_UPDATE_STATUS_CANVAS = "UpdateStatusCanvas";
     public const string EV_OPEN_STATUS_CANVAS = "OpenStatusCanvas";
@@ -15,8 +16,8 @@ public class ConstantController {
     public const string EV_EAT = "EatFood";
     public const string EV_DRINK = "DrinkWater";
     public const string EV_COLLECTED = "CollectObject";
-
-
+    public const string EV_HAZARD_REMOVED = "HazardCleard";
+    
     // Game Controller
     public enum GAME_STATE { Brief, Playing, Needs, GameOver };
     public enum TASK_STATE { Task3 };

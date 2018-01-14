@@ -2,51 +2,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnController : MonoBehaviour {
+public class SpawnController : MonoBehaviour
+{
 
-    [SerializeField]public GameObject waterObject, foodObject, collectableObject;
-    public AudioClip drinking, eating, collecting;
+    [SerializeField] public GameObject waterObject, foodObject, collectableObject;
+    public GameObject[] hazards;
+    public AudioClip drinking, eating, collecting, thud;
+    public Transform collectableSpawnPoint;
 
-    private GameObject currentWater, currentFood, currentCollectable;
+    private GameObject currentWater, currentFood, currentCollectable, currentHazard;
     private Transform[] spawnPoints;
     private bool[] spawnActive;
-    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentCollectableIndex = -1;
+    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentCollectableIndex = -1, currentHazardIndex = -1;
 
-    void Awake () {
+    void Start()
+    {
         GameObject spawn = GameObject.Find("SpawnPoints");
         spawnPoints = spawn.GetComponentsInChildren<Transform>();
         spawnActive = new bool[spawnPoints.Length];
-        for (int i = 0; i < spawnActive.Length; i++) {
+        for ( int i = 0; i < spawnActive.Length; i++ )
+        {
             spawnActive[i] = false;
         }
     }
-	
-    private void OnEnable() {
+
+    private void OnEnable()
+    {
         EventController.StartListening(ConstantController.EV_SPAWN_WATER, SpawnWater);
         EventController.StartListening(ConstantController.EV_SPAWN_FOOD, SpawnFood);
         EventController.StartListening(ConstantController.EV_SPAWN_COLLECTABLE, SpawnCollectable);
+        EventController.StartListening(ConstantController.EV_SPAWN_HAZARD, SpawnNewHazard);
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         EventController.StopListening(ConstantController.EV_SPAWN_WATER, SpawnWater);
         EventController.StopListening(ConstantController.EV_SPAWN_FOOD, SpawnFood);
         EventController.StopListening(ConstantController.EV_SPAWN_COLLECTABLE, SpawnCollectable);
+        EventController.StopListening(ConstantController.EV_SPAWN_HAZARD, SpawnNewHazard);
     }
 
-    private void SpawnWater() {
+    private void SpawnWater()
+    {
         SpawnObject(waterObject, ref currentWater);
         currentWaterIndex = currentIndex;
     }
 
-    private void SpawnFood() {
+    private void SpawnFood()
+    {
         SpawnObject(foodObject, ref currentFood);
         currentFoodIndex = currentIndex;
     }
 
     private void SpawnCollectable()
     {
-        SpawnObject(collectableObject, ref currentCollectable);
-        currentCollectableIndex = currentIndex;
+        currentCollectable = Instantiate(collectableObject, collectableSpawnPoint.position, Quaternion.identity);
+    }
+
+    private void SpawnNewHazard()
+    {
+        SpawnObject(hazards[Random.Range(0, hazards.Length)], ref currentHazard);
+        currentHazardIndex = currentIndex;
     }
 
     public void ConsumeWater()
@@ -62,13 +78,22 @@ public class SpawnController : MonoBehaviour {
         GetComponent<AudioSource>().clip = eating;
         GetComponent<AudioSource>().Play();
     }
-    
+
     public void CollectObject()
     {
-        EndObject(ref currentCollectable, ref currentCollectableIndex, ConstantController.EV_COLLECTED, 100f);
+        Destroy(currentCollectable);
+        EventController.TriggerEvent(ConstantController.EV_COLLECTED);
+        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, 100f);
         GetComponent<AudioSource>().clip = collecting;
         GetComponent<AudioSource>().Play();
         FindObjectOfType<Task1>().ItemHasBeenCollected();
+    }
+
+    public void RemoveHazard()
+    {
+        EndObject(ref currentHazard, ref currentHazardIndex, ConstantController.EV_HAZARD_REMOVED, 250f);
+        GetComponent<AudioSource>().clip = thud;
+        GetComponent<AudioSource>().Play();
     }
 
     private void EndObject(ref GameObject _item, ref int _index, string _event, float _score)
@@ -80,13 +105,16 @@ public class SpawnController : MonoBehaviour {
         EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _score);
     }
 
-    private void SpawnObject(GameObject _obj, ref GameObject _current) {
+    private void SpawnObject(GameObject _obj, ref GameObject _current)
+    {
         int randomSpawnLocation = Random.Range(2, spawnPoints.Length);
-        while (spawnActive[randomSpawnLocation]) {
+        while ( spawnActive[randomSpawnLocation] )
+        {
             randomSpawnLocation = Random.Range(2, spawnPoints.Length);
         }
         spawnActive[randomSpawnLocation] = true;
-        currentIndex = randomSpawnLocation; 
+        currentIndex = randomSpawnLocation;
+        Debug.Log(spawnPoints[randomSpawnLocation - 1].name + " - ");
         _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
     }
 

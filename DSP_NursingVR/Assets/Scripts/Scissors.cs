@@ -4,6 +4,6 @@ public class Scissors : MonoBehaviour
 {
     public void HazardRemoved()
     {
-        //FindObjectOfType<SpawnController>().RemoveHazard();
+        FindObjectOfType<SpawnController>().RemoveHazard();
     }
 }

@@ -393,9 +393,15 @@ MonoBehaviour:
   foodObject: {fileID: 1374517728147766, guid: 610b19a2b79780a4ab2253b99f038759, type: 2}
   collectableObject: {fileID: 1910741580207038, guid: 648559e3029e0274381914e2db69d8f4,
     type: 2}
+  hazards:
+  - {fileID: 1703825238847698, guid: 30515c18c469e674987ed1604631801f, type: 2}
+  - {fileID: 1227566759925212, guid: 681ddbca0f9e7b54694eae2c5c8bff84, type: 2}
   drinking: {fileID: 8300000, guid: 6738a0855d598df449b895792263b56d, type: 3}
   eating: {fileID: 8300000, guid: 041e61850d29a7645808a386dcee20a7, type: 3}
   collecting: {fileID: 8300000, guid: 5afbeb5a4726ce445b5e2b02b5ca6893, type: 3}
+  thud: {fileID: 8300000, guid: d352694398395674b8bc4d694ddc202e, type: 3}
+  collectableSpawnPoint: {fileID: 4297237272522316, guid: 30ce1d006f3b4af43a376e27e0037711,
+    type: 2}
 --- !u!114 &114670961070120160
 MonoBehaviour:
   m_ObjectHideFlags: 1
