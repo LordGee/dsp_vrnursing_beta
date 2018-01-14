@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4082440376363084}
   - component: {fileID: 114579866884119818}
+  - component: {fileID: 82459290109473266}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -190,6 +191,86 @@ Transform:
   m_Father: {fileID: 4144275888240312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82459290109473266
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1739640621967844}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!82 &82853729659327886
 AudioSource:
   m_ObjectHideFlags: 1
@@ -312,6 +393,9 @@ MonoBehaviour:
   foodObject: {fileID: 1374517728147766, guid: 610b19a2b79780a4ab2253b99f038759, type: 2}
   collectableObject: {fileID: 1910741580207038, guid: 648559e3029e0274381914e2db69d8f4,
     type: 2}
+  drinking: {fileID: 8300000, guid: 6738a0855d598df449b895792263b56d, type: 3}
+  eating: {fileID: 8300000, guid: 041e61850d29a7645808a386dcee20a7, type: 3}
+  collecting: {fileID: 8300000, guid: 5afbeb5a4726ce445b5e2b02b5ca6893, type: 3}
 --- !u!114 &114670961070120160
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,6 +5,8 @@ using UnityEngine;
 public class SpawnController : MonoBehaviour {
 
     [SerializeField]public GameObject waterObject, foodObject, collectableObject;
+    public AudioClip drinking, eating, collecting;
+
     private GameObject currentWater, currentFood, currentCollectable;
     private Transform[] spawnPoints;
     private bool[] spawnActive;
@@ -50,16 +52,22 @@ public class SpawnController : MonoBehaviour {
     public void ConsumeWater()
     {
         EndObject(ref currentWater, ref currentWaterIndex, ConstantController.EV_DRINK, 12f);
+        GetComponent<AudioSource>().clip = drinking;
+        GetComponent<AudioSource>().Play();
     }
 
     public void ConsumeFood()
     {
         EndObject(ref currentFood, ref currentFoodIndex, ConstantController.EV_EAT, 25f);
+        GetComponent<AudioSource>().clip = eating;
+        GetComponent<AudioSource>().Play();
     }
     
     public void CollectObject()
     {
         EndObject(ref currentCollectable, ref currentCollectableIndex, ConstantController.EV_COLLECTED, 100f);
+        GetComponent<AudioSource>().clip = collecting;
+        GetComponent<AudioSource>().Play();
         FindObjectOfType<Task1>().ItemHasBeenCollected();
     }
 

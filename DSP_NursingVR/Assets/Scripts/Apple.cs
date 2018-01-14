@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Valve.VR.InteractionSystem;
 
 public class Apple : MonoBehaviour
@@ -7,6 +8,7 @@ public class Apple : MonoBehaviour
     {
         FindObjectOfType<SpawnController>().ConsumeFood();
     }
+
 
     /*
     void OnTriggerStay(Collider _col)
