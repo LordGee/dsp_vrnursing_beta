@@ -2298,6 +2298,11 @@ Prefab:
       propertyPath: statusCanvas
       value: 
       objectReference: {fileID: 1061065315}
+    - target: {fileID: 82459290109473266, guid: 922229d2ea19fc447b77cf86a2535b15,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 922229d2ea19fc447b77cf86a2535b15, type: 2}
   m_IsPrefabParent: 0

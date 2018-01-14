@@ -22,7 +22,7 @@ public class PipeConnector : MonoBehaviour
                 connected = true;
             } else if (gameObject.GetComponentInParent<Pipe>().CheckConnectedSupply()) {
                 // Keep object as is
-            } else {
+            } else { 
                 gameObject.GetComponentInParent<Pipe>().Disconnected();
                 connected = false;
             }

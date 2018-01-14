@@ -6,6 +6,8 @@ using UnityEngine;
 public class Pipe : MonoBehaviour {
 
     public bool connectedSupply;
+    public AudioClip turn, connect;
+
     private Color currentColour, startColour;
     public int rowIndex, colIndex;
     public ConstantController.PIPE_PIECES pipeType;
@@ -38,12 +40,17 @@ public class Pipe : MonoBehaviour {
         if (pipeType == ConstantController.PIPE_PIECES.Game)
         {
             SetColour(Color.green);
-            connectedSupply = true;
+            if (!connectedSupply)
+            {
+                connectedSupply = true;
+                PlaySFX(connect);
+            }
         } else if (pipeType == ConstantController.PIPE_PIECES.Finish) {
             if (!triggerOnce)
             {
                 EventController.TriggerEvent(ConstantController.TASK_WIN);
                 triggerOnce = true;
+                PlaySFX(connect);
             }
         }
     }
@@ -62,6 +69,7 @@ public class Pipe : MonoBehaviour {
         if (!wait)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90f);
+            PlaySFX(turn);
             wait = true;
             StartCoroutine(Wait());
         }
@@ -70,6 +78,7 @@ public class Pipe : MonoBehaviour {
 
     public void RotateAntiClockwise() {
         if (!wait) {
+            PlaySFX(turn);
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 90f);
             wait = true;
             StartCoroutine(Wait());
@@ -77,7 +86,7 @@ public class Pipe : MonoBehaviour {
     }
 
     private IEnumerator Wait() {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         wait = false;
     }
 
@@ -95,7 +104,12 @@ public class Pipe : MonoBehaviour {
     {
         GetComponent<Rigidbody>().useGravity = true;
         GetComponent<Rigidbody>().isKinematic = false;
-        //GetComponent<Rigidbody>().freezeRotation = false;
         GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    }
+
+    private void PlaySFX(AudioClip _clip)
+    {
+        GetComponent<AudioSource>().clip = _clip;
+        GetComponent<AudioSource>().Play();
     }
 }
