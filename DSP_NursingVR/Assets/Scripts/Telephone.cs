@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using VRTK;
 
 public class Telephone : MonoBehaviour
 {
@@ -40,16 +39,6 @@ public class Telephone : MonoBehaviour
         ring = false;
         answered = true;
     }
-
-    /* private IEnumerator RepeatRing(float _length)
-    {
-        yield return new WaitForSeconds(_length);
-        if ( audio.isPlaying ) {
-            StartCoroutine(RepeatRing(1f));
-        } else if (ring) {
-            StartRinging();
-        }
-    }*/
 
     void OnTriggerStay(Collider _col)
     {

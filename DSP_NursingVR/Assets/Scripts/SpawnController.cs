@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
@@ -13,9 +11,9 @@ public class SpawnController : MonoBehaviour
     private GameObject currentWater, currentFood, currentCollectable, currentHazard;
     private Transform[] spawnPoints;
     private bool[] spawnActive;
-    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentCollectableIndex = -1, currentHazardIndex = -1;
+    private int currentIndex = -1, currentWaterIndex = -1, currentFoodIndex = -1, currentHazardIndex = -1;
 
-    void Start()
+    void Awake()
     {
         GameObject spawn = GameObject.Find("SpawnPoints");
         spawnPoints = spawn.GetComponentsInChildren<Transform>();

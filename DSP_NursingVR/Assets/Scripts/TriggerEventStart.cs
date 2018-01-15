@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.EventSystems;
-using UnityEngine;
-using Valve.VR.InteractionSystem;
-using VRTK;
+﻿using UnityEngine;
 
 public class TriggerEventStart : MonoBehaviour
 {

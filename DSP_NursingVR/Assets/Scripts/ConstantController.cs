@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ConstantController {
+﻿public class ConstantController {
 
     // Event Names
     public const string EV_SPAWN_WATER = "SpawnWaterEvent";

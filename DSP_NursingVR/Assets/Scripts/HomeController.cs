@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,10 +25,7 @@ public class HomeController : MonoBehaviour
         List<float> scores = FindObjectOfType<PlayerPrefsController>().GetHighScores();
         for (int i = 0; i < scores.Count; i++)
         {
-            if (scores[i] != null)
-            {
-                text.GetComponent<TextMesh>().text += "\n" + (i + 1) + ". " + scores[i];
-            }
+            text.GetComponent<TextMesh>().text += "\n" + (i + 1) + ". " + scores[i];
         }
     }
 
