@@ -445,3 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8af38de366e96448e363f328ea7d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endGameStates:
+  - {fileID: 8300000, guid: 72c306c0242bed94c815ed412560f3d6, type: 3}
+  - {fileID: 8300000, guid: 09844f0e8a96aea4891add597daf75ce, type: 3}
+  - {fileID: 8300000, guid: 90501a7d735862b4fb9b8dc6657ed958, type: 3}

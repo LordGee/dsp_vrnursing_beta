@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4941962322352612}
   - component: {fileID: 114033476956749424}
+  - component: {fileID: 82864505792128226}
   m_Layer: 0
   m_Name: Task3
   m_TagString: Untagged
@@ -40,6 +41,86 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82864505792128226
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1016589055444602}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114033476956749424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -62,3 +143,15 @@ MonoBehaviour:
     type: 2}
   taskInstructions: Nurse my plumbing has got tangled, and now theres nothing coming
     through... could you please, please, PLEASE sort it out!!!
+  voiceInstructions:
+  - {fileID: 8300000, guid: 16335b7d47eadb94b9b278bd13ebb3dc, type: 3}
+  - {fileID: 8300000, guid: 7d3e825e295d5d5468f9c366c6e00fcd, type: 3}
+  - {fileID: 8300000, guid: a61e00fe52117424d80027217bb3bcaa, type: 3}
+  - {fileID: 8300000, guid: cddd0cd8c83e2464e8e5c1bbd9ec8226, type: 3}
+  patientVoice:
+  - {fileID: 8300000, guid: 1bab953f08c37a248b6c358be585304c, type: 3}
+  - {fileID: 8300000, guid: d5bd5ad3268760845814db591393f438, type: 3}
+  - {fileID: 8300000, guid: f2230f09e3e1bfd43b042b9e9ca4f1c0, type: 3}
+  - {fileID: 8300000, guid: a1c7b011447e1154fba4482e016bb93e, type: 3}
+  - {fileID: 8300000, guid: ebcd95c6a72df26439fba5238cda5f4f, type: 3}
+  winClip: {fileID: 8300000, guid: cee43a13138206d4ca0d69b055a1ac0b, type: 3}

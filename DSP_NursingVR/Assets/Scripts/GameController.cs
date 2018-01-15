@@ -7,6 +7,7 @@ using VRTK;
 
 public class GameController : MonoBehaviour
 {
+    public AudioClip[] endGameStates;
 
     private ConstantController.GAME_STATE currentGameState;
     private float hydrationLevel, hydrationTimer;
@@ -129,6 +130,8 @@ public class GameController : MonoBehaviour
             else
             {
                 winCondition = false;
+                GetComponent<AudioSource>().clip = endGameStates[0];
+                GetComponent<AudioSource>().Play();
                 currentGameState = ConstantController.GAME_STATE.GameOver;
             }
             if ( hungerLevel > 0 )
@@ -145,6 +148,8 @@ public class GameController : MonoBehaviour
             else
             {
                 winCondition = false;
+                GetComponent<AudioSource>().clip = endGameStates[1];
+                GetComponent<AudioSource>().Play();
                 currentGameState = ConstantController.GAME_STATE.GameOver;
             }
         } else {
@@ -159,12 +164,23 @@ public class GameController : MonoBehaviour
         currentGameState = ConstantController.GAME_STATE.GameOver;
     }
 
+    private bool once = false;
     private void UpdateGameOver()
     {
-        if (winCondition)
-        {
-            gameScore += Mathf.Ceil(gameTimer);
+        if (!once) {
+            if ( winCondition ) {
+                GetComponent<AudioSource>().clip = endGameStates[2];
+                GetComponent<AudioSource>().Play();
+                gameScore += Mathf.Ceil(gameTimer);
+            }
+            once = !once;
+            StartCoroutine(LoadMainMenu(GetComponent<AudioSource>().clip.length));
         }
+    }
+
+    private IEnumerator LoadMainMenu(float _length)
+    {
+        yield return new WaitForSeconds(_length);
         FindObjectOfType<PlayerPrefsController>().SetPlayerScore(gameScore);
         SceneManager.LoadScene(LEVEL_00);
     }

@@ -20,7 +20,7 @@ public class Task1 : MonoBehaviour
         spawnCanvas = GameObject.Find("StartInstructions");
         Instantiate(taskCanvas, spawnCanvas.transform);
 
-        voiceIndex = 4; // todo: change back to 0, before build!
+        voiceIndex = 0;
         PlayAudioClips();
 
         isActive = true;
@@ -45,7 +45,10 @@ public class Task1 : MonoBehaviour
         {
             GetComponent<AudioSource>().clip = voiceOverAudioClips[voiceIndex];
             GetComponent<AudioSource>().Play();
-            GameObject.Find("Instructions").GetComponent<Text>().text = taskInstructions[voiceIndex];
+            if (voiceIndex < taskInstructions.Length)
+            {
+                GameObject.Find("Instructions").GetComponent<Text>().text = taskInstructions[voiceIndex];
+            }
             StartCoroutine(PlayNextClip(GetComponent<AudioSource>().clip.length));
             voiceIndex++;
         }

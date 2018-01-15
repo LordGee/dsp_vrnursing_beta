@@ -143,6 +143,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8493776c11bd6744d9fa5ec5139baec0, type: 3}
   - {fileID: 8300000, guid: e0a172f5d60ff204382ef6008ffe4618, type: 3}
   - {fileID: 8300000, guid: 32e2c5aabc5799b48a94105eafb0ce91, type: 3}
+  - {fileID: 8300000, guid: dfc2f0d2f14a46646b2c1e95de5757f3, type: 3}
   taskInstructions:
   - "Hello, your first mission is to get 3 packets of aspirin. On your way there,
     help any patients and nurses that are in need. Don\u2019t forget to keep an eye-out
