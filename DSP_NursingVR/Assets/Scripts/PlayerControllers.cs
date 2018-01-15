@@ -15,7 +15,7 @@ public class PlayerControllers : MonoBehaviour
         GetComponent<VRTK_ControllerEvents>().TriggerPressed += new ControllerInteractionEventHandler(DoTriggerPressed);
         GetComponent<VRTK_ControllerEvents>().TriggerReleased += new ControllerInteractionEventHandler(DoTriggerReleased);
 
-        GetComponent<VRTK_ControllerEvents>().TriggerClicked += new ControllerInteractionEventHandler(DoTriggerClicked);
+        // GetComponent<VRTK_ControllerEvents>().TriggerClicked += new ControllerInteractionEventHandler(DoTriggerClicked);
         GetComponent<VRTK_ControllerEvents>().TriggerUnclicked += new ControllerInteractionEventHandler(DoTriggerUnclicked);
 
         GetComponent<VRTK_ControllerEvents>().TriggerAxisChanged += new ControllerInteractionEventHandler(DoTriggerAxisChanged);
@@ -64,6 +64,7 @@ public class PlayerControllers : MonoBehaviour
         //DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "released", e);
     }
 
+    /*
     private void DoTriggerClicked(object sender, ControllerInteractionEventArgs e)
     {
         if ( FindObjectOfType<PipeManager>() != null )
@@ -71,7 +72,7 @@ public class PlayerControllers : MonoBehaviour
             PipeTriggerClicked();
         }
     }
-
+    */
     private void DoTriggerUnclicked(object sender, ControllerInteractionEventArgs e)
     {
         if (FindObjectOfType<PipeManager>() != null)

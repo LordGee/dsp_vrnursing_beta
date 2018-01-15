@@ -148,7 +148,7 @@ public class GameController : MonoBehaviour
 
     public void UpdateGameScore(float _score)
     {
-        gameScore += _score;
+        gameScore += Mathf.Ceil(_score);
         CanvasController.gameScore = gameScore;
     }
 

@@ -63,6 +63,11 @@ public class Pipe : MonoBehaviour {
         }
     }
 
+    public void PipeSelected()
+    {
+        RotateAntiClockwise();
+    }
+
     private bool wait = false;
     public void RotateClockwise()
     {

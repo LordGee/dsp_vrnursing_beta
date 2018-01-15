@@ -95,6 +95,17 @@ public class Task3 : MonoBehaviour {
         }
     }
 
+    private bool onlyOnce = false;
+    public void AcceptButton()
+    {
+        if ( !onlyOnce )
+        {
+            step++;
+            onlyOnce = true;
+            LaunchGame();
+        }
+    }
+
     private void LaunchGame()
     {
         EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
@@ -102,20 +113,11 @@ public class Task3 : MonoBehaviour {
         Destroy(canvas);
         Destroy(taskMachine);
         task = Instantiate(taskChallenge);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.transform.position = gamePosition.transform.position;
-        player.transform.rotation = gamePosition.transform.localRotation;
+        GameObject player = GameObject.Find("[VRTK_Manager]");
+        GameObject.Find("[CameraRig]").transform.localPosition = Vector3.zero;
+        player.transform.localPosition = gamePosition.transform.position;
+        player.transform.localRotation = gamePosition.transform.rotation;
         step++;
-    }
-
-    private bool onlyOnce = false;
-    public void AcceptButton()
-    {
-        if (!onlyOnce) {
-            step++;
-            onlyOnce = true;
-            LaunchGame();
-        }
     }
 
     public void DelegateButton() {
