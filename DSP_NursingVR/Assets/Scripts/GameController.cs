@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VRTK;
 
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
     private bool waterSpawned, foodSpawned;
     private float alpha;
     private float maxAlpha = 0.9f;
+    private const string LEVEL_00 = "Level_00_Home";
 
     public float GetHydrationLevel() { return hydrationLevel; }
     public float GetHungerLevel() { return hungerLevel; }
@@ -134,8 +136,7 @@ public class GameController : MonoBehaviour
                     hungerTimer = 0f;
                 }
             }
-        } else
-        {
+        } else {
             currentGameState = ConstantController.GAME_STATE.GameOver;
             Debug.Log("Game Over" + System.DateTime.Now);
         }
@@ -143,7 +144,9 @@ public class GameController : MonoBehaviour
 
     private void UpdateGameOver()
     {
-        Debug.Log("Thats ALL Folks!");
+        gameScore += Mathf.Ceil(gameTimer);
+        Debug.Log("Thats ALL Folks! Score = " + gameScore);
+        SceneManager.LoadScene(LEVEL_00);
     }
 
     public void UpdateGameScore(float _score)

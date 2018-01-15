@@ -55,9 +55,9 @@ public class TaskController : MonoBehaviour
 
     public void AcceptOption()
     {
-        if (selectedOption == 0 || selectedOption == 2) {
+        if (selectedOption == 0) {
             // do nothing for now
-        } else if (selectedOption == 1) {
+        } else if (selectedOption == 1 || selectedOption == 2 ) {
             AcceptButton();
         } else if (selectedOption == 3) {
             DelegateButton();
