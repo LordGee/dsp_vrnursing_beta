@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using UnityEngine;
 
-public class PlayerPrefsControlScript : MonoBehaviour
+public class PlayerPrefsController : MonoBehaviour
 {
 
-    // Current Player
+    /* Current Player */
     private const string CURRENT_SCORE = "current_score";
     private const string CURRENT_PLAYER = "current_player";
 
-
-    // High Score Board
+    /* High Score Board */
     private const string HIGH_SCORE_ARRAY = "high_score_";
     private const int NO_OF_SCORES = 5;
    
@@ -22,8 +21,10 @@ public class PlayerPrefsControlScript : MonoBehaviour
 
     void Start()
     {
-        //PlayerPrefs.SetFloat(CURRENT_SCORE, 0);
-        PlayerPrefs.SetString(CURRENT_PLAYER, "");
+        if (!PlayerPrefs.HasKey(CURRENT_SCORE))
+        {
+            PlayerPrefs.SetFloat(CURRENT_SCORE, 0);
+        }
     }
 
     /* Set values */
@@ -54,6 +55,7 @@ public class PlayerPrefsControlScript : MonoBehaviour
             }
         }
         scores.Sort();
+        scores.Reverse();
         return scores;
     }
 

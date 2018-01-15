@@ -38,6 +38,10 @@ public class TaskController : MonoBehaviour
     private IEnumerator EndTask(int _index) {
         yield return new WaitForSeconds(3f);
         Destroy(currentTask[_index]);
+        if (_index == 0)
+        {
+            FindObjectOfType<GameController>().FinalTaskComplete();
+        }
     }
 
     public void AcceptButton() {

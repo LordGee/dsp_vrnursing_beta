@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     private float hydrationLevel, hydrationTimer;
     private float hungerLevel, hungerTimer;
     private float gameTimer, timerInterval, gameScore;
-    private bool waterSpawned, foodSpawned;
+    private bool waterSpawned, foodSpawned, winCondition;
     private float alpha;
     private float maxAlpha = 0.9f;
     private const string LEVEL_00 = "Level_00_Home";
@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour
         EventController.TriggerEvent(ConstantController.EV_SPAWN_WATER);
         EventController.TriggerEvent(ConstantController.EV_SPAWN_HAZARD);
         gameScore = 0f;
+        winCondition = true;
         gameTimer = timerInterval = 300f;
         UpdateGameScore(gameScore);
         UpdateGameTimer();
@@ -125,6 +126,11 @@ public class GameController : MonoBehaviour
                     hydrationTimer = 0f;
                 }
             }
+            else
+            {
+                winCondition = false;
+                currentGameState = ConstantController.GAME_STATE.GameOver;
+            }
             if ( hungerLevel > 0 )
             {
                 hungerTimer += Time.deltaTime;
@@ -136,16 +142,30 @@ public class GameController : MonoBehaviour
                     hungerTimer = 0f;
                 }
             }
+            else
+            {
+                winCondition = false;
+                currentGameState = ConstantController.GAME_STATE.GameOver;
+            }
         } else {
+            winCondition = false;
             currentGameState = ConstantController.GAME_STATE.GameOver;
-            Debug.Log("Game Over" + System.DateTime.Now);
         }
+    }
+
+    public void FinalTaskComplete()
+    {
+        winCondition = true;
+        currentGameState = ConstantController.GAME_STATE.GameOver;
     }
 
     private void UpdateGameOver()
     {
-        gameScore += Mathf.Ceil(gameTimer);
-        Debug.Log("Thats ALL Folks! Score = " + gameScore);
+        if (winCondition)
+        {
+            gameScore += Mathf.Ceil(gameTimer);
+        }
+        FindObjectOfType<PlayerPrefsController>().SetPlayerScore(gameScore);
         SceneManager.LoadScene(LEVEL_00);
     }
 
