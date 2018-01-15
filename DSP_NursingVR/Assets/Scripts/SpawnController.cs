@@ -99,10 +99,13 @@ public class SpawnController : MonoBehaviour
     private void EndObject(ref GameObject _item, ref int _index, string _event, float _score)
     {
         Destroy(_item);
-        spawnActive[_index] = false;
-        _index = -1;
-        EventController.TriggerEvent(_event);
-        EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _score);
+        if (_index != -1)
+        {
+            spawnActive[_index] = false;
+            _index = -1;
+            EventController.TriggerEvent(_event);
+            EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _score);
+        }
     }
 
     private void SpawnObject(GameObject _obj, ref GameObject _current)
@@ -114,8 +117,7 @@ public class SpawnController : MonoBehaviour
         }
         spawnActive[randomSpawnLocation] = true;
         currentIndex = randomSpawnLocation;
-        Debug.Log(spawnPoints[randomSpawnLocation - 1].name + " - ");
-        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
+        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
     }
 
     public Transform GetCurrentCollectableLocation() { return currentCollectable.transform; }
