@@ -117,7 +117,7 @@ public class SpawnController : MonoBehaviour
         }
         spawnActive[randomSpawnLocation] = true;
         currentIndex = randomSpawnLocation;
-        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation].position, Quaternion.identity);
+        _current = Instantiate(_obj, spawnPoints[randomSpawnLocation - 1].position, Quaternion.identity);
     }
 
     public Transform GetCurrentCollectableLocation() { return currentCollectable.transform; }

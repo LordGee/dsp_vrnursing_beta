@@ -78,7 +78,7 @@ public class GameController : MonoBehaviour
 
     public void SpawnHazard()
     {
-        StartCoroutine(DelayNewSpawn(ConstantController.EV_SPAWN_WATER, 45f));
+        StartCoroutine(DelayNewSpawn(ConstantController.EV_SPAWN_HAZARD, 45f));
     }
 
     private IEnumerator DelayNewSpawn(string _spawn, float _delay)
