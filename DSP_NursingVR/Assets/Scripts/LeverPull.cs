@@ -10,16 +10,10 @@ public class LeverPull : MonoBehaviour
         anim = GetComponentInParent<Animator>();
     }
 
-    void OnTriggerStay(Collider _col)
+    public void PullTheLever()
     {
-        if ( _col.transform.parent.transform.parent.tag == "Player" )
-        {
-            if ( _col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed() )
-            {
-                anim.SetTrigger("LeverPullTrigger");
-                StartCoroutine(WaitForAnimation());
-            }
-        }
+        anim.SetTrigger("LeverPullTrigger");
+        StartCoroutine(WaitForAnimation());
     }
 
     public IEnumerator WaitForAnimation()

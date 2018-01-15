@@ -7,7 +7,7 @@ public class ButtonPress : MonoBehaviour {
 
     private Animator anim;
     private Text display;
-    private string[] textOptions = {"Want?", "Take", "Ignore", "Delegate" };
+    private string[] textOptions = {"Want?", "Take", "Take", "Ignore" };
 
     void Start() {
         anim = GetComponentInParent<Animator>();
@@ -15,17 +15,11 @@ public class ButtonPress : MonoBehaviour {
         display.text = textOptions[0];
     }
 
-    void OnTriggerStay(Collider _col)
+    public void PressButton()
     {
-            if (_col.transform.parent.transform.parent.tag == "Player")
-            {
-                if (_col.transform.parent.transform.parent.GetComponent<PlayerControllers>().CheckGripPressed())
-                {
-                    anim.SetTrigger("PushButton" + buttonNumber + "Trigger");
-                    display.text = textOptions[buttonNumber];
-                    EventController.TriggerEvent(ConstantController.TASK_SELECTION_OPTION, buttonNumber);
-                }
-            }
+        anim.SetTrigger("PushButton" + buttonNumber + "Trigger");
+        display.text = textOptions[buttonNumber];
+        EventController.TriggerEvent(ConstantController.TASK_SELECTION_OPTION, buttonNumber);
     }
 }
 
