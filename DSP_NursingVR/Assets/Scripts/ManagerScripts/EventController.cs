@@ -19,7 +19,6 @@ public class EventController : MonoBehaviour {
         get {
             if (!eventManager) {
                 eventManager = FindObjectOfType(typeof(EventController)) as EventController;
-
                 if (!eventManager) {
                     Debug.LogError("There needs to be one active EventManger script on a GameObject in your scene.");
                 } else {

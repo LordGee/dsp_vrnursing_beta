@@ -1,4 +1,7 @@
-﻿public class ConstantController {
+﻿/// <summary>
+/// Home for all constant values
+/// </summary>
+public class ConstantController {
 
     // Event Names
     public const string EV_SPAWN_WATER = "SpawnWaterEvent";
