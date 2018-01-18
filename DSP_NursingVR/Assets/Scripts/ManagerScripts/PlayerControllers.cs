@@ -75,10 +75,12 @@ public class PlayerControllers : MonoBehaviour
     */
     private void DoTriggerUnclicked(object sender, ControllerInteractionEventArgs e)
     {
+        /*
         if (FindObjectOfType<PipeManager>() != null)
         {
             PipeTriggerUnclicked();
         }
+        */
     }
 
     private void DoTriggerAxisChanged(object sender, ControllerInteractionEventArgs e)

@@ -35,17 +35,14 @@ public class Pipe : MonoBehaviour {
     public bool triggerOnce = false;
     public void Connected()
     {
-        if (pipeType == ConstantController.PIPE_PIECES.Game)
-        {
+        if (pipeType == ConstantController.PIPE_PIECES.Game) {
             SetColour(Color.green);
-            if (!connectedSupply)
-            {
+            if (!connectedSupply) {
                 connectedSupply = true;
                 PlaySFX(connect);
             }
         } else if (pipeType == ConstantController.PIPE_PIECES.Finish) {
-            if (!triggerOnce)
-            {
+            if (!triggerOnce) {
                 EventController.TriggerEvent(ConstantController.TASK_WIN);
                 triggerOnce = true;
                 PlaySFX(connect);
@@ -69,8 +66,7 @@ public class Pipe : MonoBehaviour {
     private bool wait = false;
     public void RotateClockwise()
     {
-        if (!wait)
-        {
+        if (!wait) {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 90f);
             PlaySFX(turn);
             wait = true;

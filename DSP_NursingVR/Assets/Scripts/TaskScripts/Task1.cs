@@ -18,21 +18,17 @@ public class Task1 : MonoBehaviour
     {
         spawnCanvas = GameObject.Find("StartInstructions");
         Instantiate(taskCanvas, spawnCanvas.transform);
-
         voiceIndex = 0;
         PlayAudioClips();
-
         isActive = true;
         itemCount = 0;
     }
 
     void Update()
     {
-        if (!isActive)
-        {
+        if (!isActive) {
             spawnTimer += Time.deltaTime;
-            if (spawnTimer > 60 || FindObjectOfType<GameController>().GetGameTimer() < 60)
-            {
+            if (spawnTimer > 60 || FindObjectOfType<GameController>().GetGameTimer() < 60){
                 SpawnNewCollectable();
             }
         }

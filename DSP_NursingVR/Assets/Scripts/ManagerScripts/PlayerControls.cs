@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using Valve.VR;
 
+/// <summary>
+/// Obsolete - most functions have been moved to the 
+/// PlayerControllers.cs script
+/// </summary>
 public class PlayerControls : MonoBehaviour
 {
     private EVRButtonId triggerButton = EVRButtonId.k_EButton_SteamVR_Trigger;

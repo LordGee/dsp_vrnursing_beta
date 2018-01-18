@@ -3,10 +3,10 @@
 public class PipeManager : MonoBehaviour {
 
     public GameObject[] pipes;
-    private Vector3 startPoint;
     public static GameObject[,] currentGridMatrix;
-    private Color flow = Color.green, end = Color.blue;
 
+    private Vector3 startPoint;
+    private Color flow = Color.green, end = Color.blue;
     private const int ROWS = 12, COLS = 10;
     private const float SPACING = 0.2f;
 
@@ -19,31 +19,23 @@ public class PipeManager : MonoBehaviour {
         BuildPipes();
     }
 
-
     private void BuildPipes()
     {
         float startX = startPoint.x, startY = startPoint.y, startZ = startPoint.z;
-        for (int i = 0; i < ROWS; i++)
-        {
-            for (int j = 0; j < COLS; j++)
-            {
-                if (i == 0 || i == ROWS - 1)
-                {
-                    if (j == Mathf.Abs(COLS / 2))
-                    {
+        for (int i = 0; i < ROWS; i++) {
+            for (int j = 0; j < COLS; j++) {
+                if (i == 0 || i == ROWS - 1) {
+                    if (j == Mathf.Abs(COLS / 2)) {
                         currentGridMatrix[i, j] =
                             Instantiate(pipes[0], new Vector3(startX, startY, startZ), Quaternion.identity);
                         currentGridMatrix[i, j].GetComponent<Pipe>().colIndex = j;
                         currentGridMatrix[i, j].GetComponent<Pipe>().rowIndex = i;
-                        if (i == 0)
-                        {
+                        if (i == 0) {
                             currentGridMatrix[i, j].GetComponent<Pipe>().pipeType =
                                 ConstantController.PIPE_PIECES.Start;
                             currentGridMatrix[i, j].GetComponent<Pipe>().connectedSupply = true;
                             currentGridMatrix[i, j].GetComponent<Pipe>().SetColour(flow);
-                        }
-                        else
-                        {
+                        } else {
                             currentGridMatrix[i, j].GetComponent<Pipe>().pipeType =
                                 ConstantController.PIPE_PIECES.Finish;
                             currentGridMatrix[i, j].GetComponent<Pipe>().connectedSupply = false;
@@ -53,9 +45,7 @@ public class PipeManager : MonoBehaviour {
                         j = COLS + 1;
                     }
                     startZ += SPACING;
-                }
-                else
-                {
+                } else {
                     currentGridMatrix[i, j] =
                         Instantiate(pipes[Random.Range(0, pipes.Length)], new Vector3(startX, startY, startZ), Quaternion.identity);
                     currentGridMatrix[i, j].GetComponent<Pipe>().connectedSupply = false;
@@ -64,11 +54,9 @@ public class PipeManager : MonoBehaviour {
                     currentGridMatrix[i, j].transform.parent = gameObject.transform;
                     startZ += SPACING;
                     int rotLotto = Random.Range(0, 4);
-                    for (int k = 0; k < rotLotto; k++)
-                    {
+                    for (int k = 0; k < rotLotto; k++) {
                         currentGridMatrix[i, j].GetComponent<Pipe>().InitialRotation();
                     }
-                    
                 }
             }
             startZ = startPoint.z;
@@ -79,12 +67,9 @@ public class PipeManager : MonoBehaviour {
     public static void DropUnusedPipes()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Pipe");
-        for (int i = 0; i < objs.Length; i++)
-        {
-            if (objs[i].GetComponent<Pipe>().GetPipeType() == ConstantController.PIPE_PIECES.Game)
-            {
-                if (!objs[i].GetComponent<Pipe>().CheckConnectedSupply())
-                {
+        for (int i = 0; i < objs.Length; i++) {
+            if (objs[i].GetComponent<Pipe>().GetPipeType() == ConstantController.PIPE_PIECES.Game) {
+                if (!objs[i].GetComponent<Pipe>().CheckConnectedSupply()) {
                     objs[i].GetComponent<Pipe>().AddGravity();
                 }
             }

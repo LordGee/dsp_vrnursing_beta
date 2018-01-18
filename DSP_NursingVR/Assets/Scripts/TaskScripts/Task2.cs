@@ -19,8 +19,7 @@ public class Task2 : MonoBehaviour
 
     void Update()
     {
-        if (taskStarted)
-        {
+        if (taskStarted) {
             taskTimer -= Time.deltaTime;
             if ( taskTimer < 0 ) {
                 taskTimer = 0;

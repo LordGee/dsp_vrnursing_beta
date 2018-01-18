@@ -12,8 +12,7 @@ public class GameController : MonoBehaviour
     private float hungerLevel, hungerTimer;
     private float gameTimer, timerInterval, gameScore;
     private bool waterSpawned, foodSpawned, winCondition;
-    private float alpha;
-    private float maxAlpha = 0.9f;
+    private float alpha, maxAlpha = 0.9f;
     private const string LEVEL_00 = "Level_00_Home";
 
     public float GetHydrationLevel() { return hydrationLevel; }
@@ -31,7 +30,7 @@ public class GameController : MonoBehaviour
         EventController.TriggerEvent(ConstantController.EV_SPAWN_HAZARD);
         gameScore = 0f;
         winCondition = true;
-        gameTimer = timerInterval = 300f;
+        gameTimer = timerInterval = ConstantController.GAME_TIME;
         UpdateGameScore(gameScore);
         UpdateGameTimer();
         VRTK_BasicTeleport.BlinkColourColor = Color.clear;
@@ -40,13 +39,11 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         gameTimer -= Time.deltaTime;
-        if ( Mathf.Floor(timerInterval) - Mathf.Floor(gameTimer) >= 1f )
-        {
+        if ( Mathf.Floor(timerInterval) - Mathf.Floor(gameTimer) >= 1f ) {
             timerInterval = gameTimer;
             UpdateGameTimer();
         }
-        switch ( currentGameState )
-        {
+        switch ( currentGameState ) {
             case ConstantController.GAME_STATE.Brief:
                 UpdateBrief();
                 break;
@@ -96,8 +93,7 @@ public class GameController : MonoBehaviour
         alpha = 0f;
         alpha += (ConstantController.HUNGER_MAX - hungerLevel) * increment;
         alpha += (ConstantController.HYDRATION_MAX - hydrationLevel) * increment;
-        if ( alpha > maxAlpha )
-        {
+        if ( alpha > maxAlpha ) {
             alpha = maxAlpha;
         }
         VRTK_BasicTeleport.BlinkColourColor = new Color(0.2f, 0f, 0F, alpha);
@@ -112,39 +108,30 @@ public class GameController : MonoBehaviour
 
     private void UpdatePlaying()
     {
-        if ( Time.timeSinceLevelLoad < ConstantController.GAME_TIME )
-        {
-            if ( hydrationLevel > 0 )
-            {
+        if ( Time.timeSinceLevelLoad < ConstantController.GAME_TIME ) {
+            if ( hydrationLevel > 0 ) {
                 hydrationTimer += Time.deltaTime;
-                if ( hydrationTimer > ConstantController.HYDRATION_DECREASE_TIME )
-                {
+                if ( hydrationTimer > ConstantController.HYDRATION_DECREASE_TIME ) {
                     hydrationLevel -= 1f;
                     AdjustFadeColor();
                     CanvasController.gameHydration = hydrationLevel;
                     hydrationTimer = 0f;
                 }
-            }
-            else
-            {
+            } else {
                 winCondition = false;
                 GetComponent<AudioSource>().clip = endGameStates[0];
                 GetComponent<AudioSource>().Play();
                 currentGameState = ConstantController.GAME_STATE.GameOver;
             }
-            if ( hungerLevel > 0 )
-            {
+            if ( hungerLevel > 0 ) {
                 hungerTimer += Time.deltaTime;
-                if ( hungerTimer > ConstantController.HUNGER_DECREASE_TIME )
-                {
+                if ( hungerTimer > ConstantController.HUNGER_DECREASE_TIME ) {
                     hungerLevel -= 1f;
                     AdjustFadeColor();
                     CanvasController.gameEnergy = hungerLevel;
                     hungerTimer = 0f;
                 }
-            }
-            else
-            {
+            } else {
                 winCondition = false;
                 GetComponent<AudioSource>().clip = endGameStates[1];
                 GetComponent<AudioSource>().Play();
@@ -163,6 +150,7 @@ public class GameController : MonoBehaviour
     }
 
     private bool once = false;
+    private float finishTimer;
     private void UpdateGameOver()
     {
         if (!once) {
@@ -172,7 +160,11 @@ public class GameController : MonoBehaviour
                 gameScore += Mathf.Ceil(gameTimer);
             }
             once = !once;
-            StartCoroutine(LoadMainMenu(GetComponent<AudioSource>().clip.length));
+            if (GetComponent<AudioSource>().isPlaying)
+                finishTimer = GetComponent<AudioSource>().clip.length;
+            else
+                finishTimer = 1f;
+            StartCoroutine(LoadMainMenu(finishTimer));
         }
     }
 

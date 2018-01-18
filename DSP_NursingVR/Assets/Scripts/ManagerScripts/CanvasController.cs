@@ -10,7 +10,6 @@ public class CanvasController : MonoBehaviour
 
     private void Awake()
     {
-        // statusCanvas = GameObject.Find(ConstantController.GO_STATUS_CANVAS);
         DeactivateCanvas(statusCanvas);
     }
 
