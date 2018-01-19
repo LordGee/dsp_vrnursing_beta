@@ -1,35 +1,29 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles the teleport point trigger events
+/// </summary>
 public class TriggerEventStart : MonoBehaviour
 {
-
     private bool triggerActivated;
 	
-	void Start ()
-	{
+	void Start () {
 	    triggerActivated = false;
 	}
 
-    void OnTriggerEnter(Collider _col)
-    {
-        if (_col.name == ConstantController.GO_FOOT_COLLIDER )
-        {
+    void OnTriggerEnter(Collider _col) {
+        if (_col.name == ConstantController.GO_FOOT_COLLIDER ) {
             triggerActivated = true;
             EventController.TriggerEvent(ConstantController.TASK_END_SIGNAL);
         }
     }
 
-    void OnCollisionEnter(Collision _col)
-    {
-        if ( _col.transform.name == ConstantController.GO_FOOT_COLLIDER )
-        {
+    void OnCollisionEnter(Collision _col) {
+        if ( _col.transform.name == ConstantController.GO_FOOT_COLLIDER ) {
             triggerActivated = true;
             EventController.TriggerEvent(ConstantController.TASK_END_SIGNAL);
         }
     }
 
-    public bool HasTriggerActivated()
-    {
-        return triggerActivated;
-    }
+    public bool HasTriggerActivated() { return triggerActivated; }
 }

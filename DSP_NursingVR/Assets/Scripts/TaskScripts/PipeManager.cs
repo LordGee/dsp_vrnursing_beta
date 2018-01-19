@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles the construction of the pipe mini game 
+/// </summary>
 public class PipeManager : MonoBehaviour {
 
     public GameObject[] pipes;
     public static GameObject[,] currentGridMatrix;
-
     private Vector3 startPoint;
     private Color flow = Color.green, end = Color.blue;
     private const int ROWS = 12, COLS = 10;
     private const float SPACING = 0.2f;
 
-    void Start()
-    {
+    /// <summary>
+    /// Constructor - deffines the starting position based onthe desired number of rows and columns
+    /// </summary>
+    private void Start() {
         float startZ = (COLS / 2) * SPACING;
         float startY = (ROWS / 2) * SPACING;
         currentGridMatrix = new GameObject[ROWS, COLS];
@@ -19,8 +23,10 @@ public class PipeManager : MonoBehaviour {
         BuildPipes();
     }
 
-    private void BuildPipes()
-    {
+    /// <summary>
+    /// Iterates through the grid and populates with random pipe pieces, and set they initial variables
+    /// </summary>
+    private void BuildPipes() {
         float startX = startPoint.x, startY = startPoint.y, startZ = startPoint.z;
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLS; j++) {
@@ -64,8 +70,11 @@ public class PipeManager : MonoBehaviour {
         }
     }
 
-    public static void DropUnusedPipes()
-    {
+    /// <summary>
+    /// Iterates through all the pipe pieces and any unused pipes have gravity applied and constraints removed.
+    /// Creates a fall down effect.
+    /// </summary>
+    public static void DropUnusedPipes() {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("Pipe");
         for (int i = 0; i < objs.Length; i++) {
             if (objs[i].GetComponent<Pipe>().GetPipeType() == ConstantController.PIPE_PIECES.Game) {

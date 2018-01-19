@@ -3,24 +3,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class Task3 : MonoBehaviour {
-
+/// <summary>
+/// Handles the unique process of task one
+/// </summary>
+public class Task3 : MonoBehaviour
+{
     public GameObject triggerEventPrefab, taskCanvas, taskAcceptor, taskChallenge, gamePosition;
     public string taskInstructions;
     public AudioClip[] voiceInstructions;
     public AudioClip[] patientVoice;
     public AudioClip winClip;
-
     private GameObject[] beds;
     private GameObject bed, trigger, taskMachine, canvas, task;
-    private float lightTimer, lightStrobeSpeed = 0.5f, lightOnValue = 1.5f, taskTimer, timerUpdate;
-    private bool lightStatus, loseCondition;
+    private float lightTimer, lightStrobeSpeed = 0.5f, lightOnValue = 1.5f, taskTimer, timerUpdate, randomTimer = 1f;
+    private bool lightStatus, loseCondition, onlyOnce = false, once;
     private int step, voiceIndex = 0;
     private PipeManager pm;
     private const int TASK_INDEX = 2;
 
-    void Start()
-    {
+    /// <summary>
+    /// Constructor - Finds all the beds in the scene and chooses one at random
+    /// </summary>
+    void Start() {
         beds = GameObject.FindGameObjectsWithTag("Bed");
         bed = beds[Random.Range(0, beds.Length)];
         lightTimer = Time.timeSinceLevelLoad;
@@ -32,9 +36,12 @@ public class Task3 : MonoBehaviour {
         EventController.StartListening(ConstantController.TASK_END_SIGNAL, EndSignal);
     }
 
-    private float randomTimer = 1f;
-    void Update()
-    {
+    /// <summary>
+    /// Update method handles the task time and updaes the display value as well
+    /// as the colour of the text depending on how long is left on the clock.
+    /// Also at random intervals will play a audio clip telling player to hurry up.
+    /// </summary>
+    void Update() {
         if (step == 1) {
             SignalNewTask();
         }  else if (step == 5) {
@@ -65,8 +72,11 @@ public class Task3 : MonoBehaviour {
         Destroy(task);
     }
 
-    private void SignalNewTask()
-    {
+    /// <summary>
+    /// Every second th light will blink on / off, 
+    /// this activates the buzzer noise to play in another script
+    /// </summary>
+    private void SignalNewTask() {
         if (Time.timeSinceLevelLoad - lightTimer > lightStrobeSpeed) {
             if (!lightStatus) {
                 bed.transform.parent.GetComponentInChildren<Light>().range = lightOnValue;
@@ -79,8 +89,11 @@ public class Task3 : MonoBehaviour {
         }   
     }
 
-    private void EndSignal()
-    {
+    /// <summary>
+    /// Switches off the alarm light which ends the buzzing,destroying the teleport point
+    /// It initiates the task instructions
+    /// </summary>
+    private void EndSignal() {
         bed.transform.parent.GetComponentInChildren<Light>().range = 0f;
         lightStatus = !lightStatus;
         step++;
@@ -90,10 +103,11 @@ public class Task3 : MonoBehaviour {
         PlayClips();
     }
 
-    private void PlayClips()
-    {
-        if ( voiceIndex != voiceInstructions.Length )
-        {
+    /// <summary>
+    /// Plays the instruction audio clips
+    /// </summary>
+    private void PlayClips() {
+        if ( voiceIndex != voiceInstructions.Length ) {
             GetComponent<AudioSource>().clip = voiceInstructions[voiceIndex];
             GetComponent<AudioSource>().Play();
             StartCoroutine(PlayNextClip(GetComponent<AudioSource>().clip.length));
@@ -101,21 +115,23 @@ public class Task3 : MonoBehaviour {
         }
     }
 
-    private IEnumerator PlayNextClip(float _waitFor)
-    {
+    /// <summary>
+    /// Plays the next clip from the array in sequence
+    /// </summary>
+    /// <param name="_waitFor">Current clip length</param>
+    private IEnumerator PlayNextClip(float _waitFor) {
         yield return new WaitForSeconds(_waitFor);
-        if (GetComponent<AudioSource>().isPlaying)
-        {
+        if (GetComponent<AudioSource>().isPlaying) {
             StartCoroutine(PlayNextClip(1f));
-        }
-        else
-        {
+        } else {
             PlayClips();
         }
     }
 
-    private void LaunchInstructions()
-    {
+    /// <summary>
+    /// Instantiates the instructions for the task and the task accepting machine
+    /// </summary>
+    private void LaunchInstructions() {
         EventController.StartListening(ConstantController.TASK_ACCEPT, AcceptButton);
         canvas = Instantiate( taskCanvas, bed.transform );
         GameObject.Find("Instructions").GetComponent<Text>().text = taskInstructions;
@@ -123,27 +139,33 @@ public class Task3 : MonoBehaviour {
         step++;
     }
 
-    private void RotateTrigger()
-    {
+    /// <summary>
+    /// Rotate the teleport point to face the bed that it spawns at
+    /// This allows the player to be facing the correct direction after fade
+    /// </summary>
+    private void RotateTrigger() {
         if (bed.transform.position.z < 0) {
             GameObject teleportPoint = trigger.transform.Find("TeleportPoint").gameObject;
             teleportPoint.transform.Rotate(Vector3.up, 180f);
         }
     }
 
-    private bool onlyOnce = false;
-    public void AcceptButton()
-    {
-        if ( !onlyOnce )
-        {
+    /// <summary>
+    /// Once the task has been accepted will launch the game.
+    /// </summary>
+    public void AcceptButton() {
+        if ( !onlyOnce ) {
             step++;
             onlyOnce = true;
             LaunchGame();
         }
     }
 
-    private void LaunchGame()
-    {
+    /// <summary>
+    /// Destroys all brief and startup objects and instaattiates the pipe game task
+    /// Player is teleported in from of the game grid facing in the correct direction.
+    /// </summary>
+    private void LaunchGame() {
         EventController.StopListening(ConstantController.TASK_ACCEPT, AcceptButton);
         EventController.StartListening(ConstantController.TASK_WIN, WinTask);
         Destroy(canvas);
@@ -156,13 +178,17 @@ public class Task3 : MonoBehaviour {
         step++;
     }
 
+    /// <summary>
+    /// Not used, maybe in a future iteration
+    /// </summary>
     public void DelegateButton() {
         Debug.Log("DELEGATE");
     }
-
-    private bool once;
-    public void WinTask()
-    {
+    
+    /// <summary>
+    /// Once the task has been won events are triggered to end the task.
+    /// </summary>
+    public void WinTask() {
         if (!once) {
             once = true;
             step++;

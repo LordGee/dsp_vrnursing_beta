@@ -1,24 +1,30 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles the unique process of task two
+/// </summary>
 public class Task2 : MonoBehaviour
 {
     public GameObject bed7;
-
     private GameObject telephone, bed7Object;
     private bool[] objectSuccess;
     private bool winStatus, once, phoneAnswered, taskStarted;
     private float taskTimer, timerUpdate;
     private const int TASK_INDEX = 1;
 
-
-    void Start()
-    {
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    void Start() {
         telephone = GameObject.Find("Telephone");
         MakeTheCall();
     }
 
-    void Update()
-    {
+    /// <summary>
+    /// Update method handles the task time and updaes the display value as well
+    /// as the colour of the text depending on how long is left on the clock.
+    /// </summary>
+    void Update() {
         if (taskStarted) {
             taskTimer -= Time.deltaTime;
             if ( taskTimer < 0 ) {
@@ -30,24 +36,31 @@ public class Task2 : MonoBehaviour
             } else if ( taskTimer < 30f ) {
                 GameObject.Find("Timer").GetComponent<TextMesh>().color = new Color(1f, 0f, 0f, 1f);
             }
-            if ( Mathf.Floor(taskTimer) != Mathf.Floor(timerUpdate) )
-            {
+            if ( Mathf.Floor(taskTimer) != Mathf.Floor(timerUpdate) ) {
                 GameObject.Find("Timer").GetComponent<TextMesh>().text = taskTimer.ToString("F0");
                 timerUpdate = Mathf.Floor(taskTimer);
             }
         }
     }
 
-    private void OnDestroy()
-    {
+    /// <summary>
+    /// If this class is destroyed the game object in scene is also destroyed
+    /// </summary>
+    private void OnDestroy() {
         Destroy(bed7Object);
     }
 
-    private void MakeTheCall()
-    {
+    /// <summary>
+    /// Sets the telephone to start ringing
+    /// </summary>
+    private void MakeTheCall() {
         telephone.GetComponent<Telephone>().StartRinging();
     }
 
+    /// <summary>
+    /// Instantiates the main main task objects into the scene and sets a 
+    /// counter of bools to test which objects have been successfully positioned
+    /// </summary>
     public void StartTask()
     {
         bed7Object = Instantiate(bed7);
@@ -60,14 +73,20 @@ public class Task2 : MonoBehaviour
         GameObject.Find("Counter").GetComponent<TextMesh>().text = "0 / 3";
     }
 
-    public void UpdateObjectResult(int _index)
-    {
+    /// <summary>
+    /// Sets the bool index to true for a successfully placed game object
+    /// </summary>
+    /// <param name="_index">Index of object</param>
+    public void UpdateObjectResult(int _index) {
         objectSuccess[_index] = true;
         TestForWinCondition();
     }
 
-    private void TestForWinCondition()
-    {
+    /// <summary>
+    /// Checks if the task has been completed or not. If true then additonal time is added 
+    /// to the players clock to allow for the player to get to the telephone at the other end of the room
+    /// </summary>
+    private void TestForWinCondition() {
         winStatus = true;
         int counter = 0;
         for ( int i = 0; i < objectSuccess.Length; i++ ) {
@@ -84,16 +103,22 @@ public class Task2 : MonoBehaviour
         } 
     }
 
-    public void PlaySFX(AudioClip _clip)
-    {
+    /// <summary>
+    /// Plays the given audio clip
+    /// </summary>
+    /// <param name="_clip">Desired audio clip</param>
+    public void PlaySFX(AudioClip _clip) {
         GetComponent<AudioSource>().clip = _clip;
         GetComponent<AudioSource>().Play();
     }
 
     public bool GetWinStatus() { return winStatus; }
 
-    public void WinTask(float _bonus)
-    {
+    /// <summary>
+    /// Once the task has been completed will trigger events to end the task
+    /// </summary>
+    /// <param name="_bonus">Bonus points to be added</param>
+    public void WinTask(float _bonus) {
         if (!once) {
             EventController.StopListening(ConstantController.TASK_WIN, WinTask);
             EventController.TriggerEvent(ConstantController.EV_UPDATE_SCORE, _bonus + Mathf.Floor(taskTimer));
@@ -102,8 +127,7 @@ public class Task2 : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         EventController.StartListening(ConstantController.TASK_WIN, WinTask);
     }
 }
