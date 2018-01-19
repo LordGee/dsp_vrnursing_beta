@@ -1,54 +1,54 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles the saving and loading of variable values that are to be stored on the users local machine
+/// </summary>
 public class PlayerPrefsController : MonoBehaviour
 {
-
-    /* Current Player */
     private const string CURRENT_SCORE = "current_score";
-    private const string CURRENT_PLAYER = "current_player";
-
-    /* High Score Board */
     private const string HIGH_SCORE_ARRAY = "high_score_";
     private const int NO_OF_SCORES = 5;
    
-    void Awake()
-    {
+    void Awake() {
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
-    {
-        if (!PlayerPrefs.HasKey(CURRENT_SCORE))
-        {
+    /// <summary>
+    /// Constructor - If first time played on local machine sets the initial current score to zero to avoid any errors later
+    /// </summary>
+    void Start() {
+        if (!PlayerPrefs.HasKey(CURRENT_SCORE)) {
             PlayerPrefs.SetFloat(CURRENT_SCORE, 0);
         }
     }
 
-    /* Set values */
-    public void SetPlayerScore(float _value)
-    {
+    /// <summary>
+    /// Sets the Players previous score
+    /// Also calls function to potentially add that score to the high score leaderboard
+    /// </summary>
+    /// <param name="_value">Score submitted</param>
+    public void SetPlayerScore(float _value) {
         PlayerPrefs.SetFloat(CURRENT_SCORE, _value);
         AddNewScoreToHighScore(_value);
-    }
+    }   
 
-    public void SetPlayerName(string _value)
-    {
-        PlayerPrefs.SetString(CURRENT_PLAYER, _value);
-    }
-    
-
-    /* Get values */
+    /// <summary>
+    /// Returns the users most recent / previous score
+    /// </summary>
+    /// <returns>Last Score</returns>
     public float GetPlayerScore() { return PlayerPrefs.GetFloat(CURRENT_SCORE); }
-    public string GetPlayerName() { return PlayerPrefs.GetString(CURRENT_PLAYER); }
 
-    public List<float> GetHighScores()
-    {
+    /// <summary>
+    /// Get all high scores from various player prefs
+    /// Iterates through the high score naming convention to populate a list of the top 5 high scores.
+    /// The list is then sorted and reversed before being passed back to the calling function.
+    /// </summary>
+    /// <returns>List of high scores</returns>
+    public List<float> GetHighScores() {
         List<float> scores = new List<float>();
-        for (int i = 0; i < NO_OF_SCORES; i++)
-        {
-            if (PlayerPrefs.HasKey(HIGH_SCORE_ARRAY + (i + 1)))
-            {
+        for (int i = 0; i < NO_OF_SCORES; i++) {
+            if (PlayerPrefs.HasKey(HIGH_SCORE_ARRAY + (i + 1))) {
                 scores.Add(PlayerPrefs.GetFloat(HIGH_SCORE_ARRAY + (i + 1)));
             }
         }
@@ -56,9 +56,15 @@ public class PlayerPrefsController : MonoBehaviour
         scores.Reverse();
         return scores;
     }
-
-    private void AddNewScoreToHighScore(float _testScore)
-    {
+    /// <summary>
+    /// Adds new scores to the high score player prefs if applicable
+    /// First iterates through to check if the leader board is already full
+    /// If not the score can take available slot.
+    /// Else the score then iteracts through again testing if it is higher then any of the previously stored values
+    /// he lowest score index is recorded and if the player is greater that index will be overwritten with the new score.
+    /// </summary>
+    /// <param name="_testScore">Score to test</param>
+    private void AddNewScoreToHighScore(float _testScore) {
         bool isAvailableSpace = false;      
         for ( int i = 0; i < NO_OF_SCORES; i++ ) {
             if ( !PlayerPrefs.HasKey(HIGH_SCORE_ARRAY + (i + 1)) ) {
@@ -84,5 +90,4 @@ public class PlayerPrefsController : MonoBehaviour
             }
         }
     }
-
 }
