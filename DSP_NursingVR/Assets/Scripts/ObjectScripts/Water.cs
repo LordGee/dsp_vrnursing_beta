@@ -2,8 +2,7 @@
 
 public class Water : MonoBehaviour
 {
-    public void WaterDrank()
-    {
+    public void WaterDrank()     {
         FindObjectOfType<SpawnController>().ConsumeWater();
     }
 }

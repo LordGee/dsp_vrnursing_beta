@@ -2,8 +2,7 @@
 
 public class PlayButton : MonoBehaviour {
 
-    public void PlayButtonPressed()
-    {
+    public void PlayButtonPressed() {
         FindObjectOfType<HomeController>().LoadGame();
     }
 }

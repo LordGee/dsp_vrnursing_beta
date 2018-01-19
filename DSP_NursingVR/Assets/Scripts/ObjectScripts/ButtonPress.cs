@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonPress : MonoBehaviour {
-
+/// <summary>
+/// Handles diffeerent button presses and display of the task acceptor machine
+/// </summary>
+public class ButtonPress : MonoBehaviour
+{
     public int buttonNumber;
-
     private Animator anim;
     private Text display;
     private string[] textOptions = {"Want?", "Take", "Take", "Ignore" };
@@ -15,8 +17,10 @@ public class ButtonPress : MonoBehaviour {
         display.text = textOptions[0];
     }
 
-    public void PressButton()
-    {
+    /// <summary>
+    /// When button is pressed display is updated and button option is stored and executes the correct animation
+    /// </summary>
+    public void PressButton() {
         anim.SetTrigger("PushButton" + buttonNumber + "Trigger");
         display.text = textOptions[buttonNumber];
         EventController.TriggerEvent(ConstantController.TASK_SELECTION_OPTION, buttonNumber);

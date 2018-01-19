@@ -2,8 +2,7 @@
 
 public class Apple : MonoBehaviour
 {
-    public void AppleEaten()
-    {
+    public void AppleEaten()     {
         FindObjectOfType<SpawnController>().ConsumeFood();
     }
 }

@@ -2,8 +2,7 @@
 
 public class WaterBucket : MonoBehaviour
 {
-    public void HazardRemoved()
-    {
+    public void HazardRemoved()     {
         FindObjectOfType<SpawnController>().RemoveHazard();
     }
 }

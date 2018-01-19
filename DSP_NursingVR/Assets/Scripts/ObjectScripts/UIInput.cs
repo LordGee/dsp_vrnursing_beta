@@ -3,6 +3,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// Obsolete - used for the original interaction of canvas buttons.
+/// Kept for future reference
+/// </summary>
 [RequireComponent(typeof(SteamVR_LaserPointer))]
 public class UIInput : MonoBehaviour {
 

@@ -2,8 +2,7 @@
 
 public class Scissors : MonoBehaviour
 {
-    public void HazardRemoved()
-    {
+    public void HazardRemoved()     {
         FindObjectOfType<SpawnController>().RemoveHazard();
     }
 }

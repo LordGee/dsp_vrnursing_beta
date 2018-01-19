@@ -2,8 +2,7 @@
 
 public class Asprin : MonoBehaviour
 {
-    public void CollectedAsprin()
-    {
+    public void CollectedAsprin()     {
         FindObjectOfType<SpawnController>().CollectObject();
     }
 }

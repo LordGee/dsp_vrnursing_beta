@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Obsolete - used for the original interaction of canvas buttons.
+/// Kept for future reference
+/// </summary>
 [RequireComponent(typeof(RectTransform))]
 public class UIItem : MonoBehaviour {
 
@@ -21,7 +25,6 @@ public class UIItem : MonoBehaviour {
         if (boxCollider == null) {
             boxCollider = gameObject.AddComponent<BoxCollider>();
         }
-
         boxCollider.size = rectTransform.sizeDelta;
     }
 }

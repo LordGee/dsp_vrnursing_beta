@@ -1,28 +1,34 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Handles all the telephone interaction and collisions
+/// </summary>
 public class Telephone : MonoBehaviour
 {
     public AudioClip[] phoneInstructions;
     public AudioClip ringer;
-
     private new AudioSource audio;
     private bool ring, answered, call;
 
-    void Start()
-    {
+    void Start() {
         audio = GetComponent<AudioSource>();
         CheckingCollisions(false);
         call = false;
     }
 
-    public void CheckingCollisions(bool _bool)
-    {
+    /// <summary>
+    /// Allows to switch on / off collision detection, so its only active when required
+    /// </summary>
+    /// <param name="_bool">Check collision?</param>
+    public void CheckingCollisions(bool _bool) {
         GetComponent<Rigidbody>().detectCollisions = _bool;
     }
 
-    public void StartRinging()
-    {
+    /// <summary>
+    /// Starts the phone ringing, and prepares the phone to be answered.
+    /// </summary>
+    public void StartRinging() {
         CheckingCollisions(true);
         audio.clip = ringer;
         audio.Play();
@@ -31,8 +37,10 @@ public class Telephone : MonoBehaviour
         answered = false;
     }
 
-    public void StopRinging()
-    {
+    /// <summary>
+    /// Stops the phone ringing and prevents further collisions.
+    /// </summary>
+    public void StopRinging() {
         CheckingCollisions(false);
         audio.Stop();
         audio.loop = false;
@@ -40,10 +48,11 @@ public class Telephone : MonoBehaviour
         answered = true;
     }
 
-    void OnTriggerStay(Collider _col)
-    {
-        if ( _col.transform.parent.transform.parent.tag == "Player" && FindObjectOfType<PlayerControllers>().CheckGripPressed())
-        {
+    /// <summary>
+    /// Collision detection with player t answer or make a call, depending on the task state.
+    /// </summary>
+    void OnTriggerStay(Collider _col) {
+        if ( _col.transform.parent.transform.parent.tag == "Player" && FindObjectOfType<PlayerControllers>().CheckGripPressed()) {
             if (ring) {
                 if (!call) {
                     AnswerThePhone();
@@ -56,8 +65,10 @@ public class Telephone : MonoBehaviour
         }
     }
 
-    public void AnswerThePhone()
-    {
+    /// <summary>
+    /// After answering the phone this function ensures the correct audio is played
+    /// </summary>
+    public void AnswerThePhone() {
         if ( !answered ) {
             StopRinging();
             if ( !call ) {
@@ -73,8 +84,10 @@ public class Telephone : MonoBehaviour
         }
     }
 
-    private void MakeTheCall()
-    {
+    /// <summary>
+    /// After answering the phone this function ensures the correct audio is played
+    /// </summary>
+    private void MakeTheCall() {
         ring = answered = call = false;
         CheckingCollisions(false);
         audio.clip = phoneInstructions[2];
@@ -83,20 +96,28 @@ public class Telephone : MonoBehaviour
         WinTask2(50f);
     }
 
-    public void PrepareReturnCall()
-    {
+    /// <summary>
+    /// prepares the phone ready to make a call.
+    /// </summary>
+    public void PrepareReturnCall() {
         CheckingCollisions(true);
         call = true;
     }
 
-    public void PrepareFailedCall()
-    {
+    /// <summary>
+    /// If player fails to complete task this function prepares a call response.
+    /// </summary>
+    public void PrepareFailedCall() {
         StartRinging();
         call = true;
     }
 
-    private IEnumerator NextClip(int _index, float _length)
-    {
+    /// <summary>
+    /// Plays next clip in sequence, determined by index value and length of previous audio.
+    /// </summary>
+    /// <param name="_index">Next index value</param>
+    /// <param name="_length">Time of current clip playing</param>
+    private IEnumerator NextClip(int _index, float _length) {
         yield return new WaitForSeconds(_length);
         if (audio.isPlaying) {
             StartCoroutine(NextClip(_index, 1f));
@@ -106,8 +127,11 @@ public class Telephone : MonoBehaviour
         }
     }
 
-    private void WinTask2(float _bonus)
-    {
+    /// <summary>
+    /// Once task is one informs the task controller that the task is complete.
+    /// </summary>
+    /// <param name="_bonus"></param>
+    private void WinTask2(float _bonus) {
         EventController.TriggerEvent(ConstantController.TASK_WIN, _bonus);
     }
 }
